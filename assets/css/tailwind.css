@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: Verdana;
+}
+
+@media only screen and (min-width: 640px) {
+  :root {
+    --scrollbar-color: #b2b8bb;
+  }
+
+  ::-webkit-scrollbar {
+    width: 22px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-color);
+    border-radius: 20px;
+    border: 7px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(105, 117, 119);
+  }
+}
+
+.recipe ul {
+  list-style-type: disc;
+}
+.recipe ul li,
+.recipe ol li {
+  margin-left: 2rem;
+}
+
+:root {
+  --bottom-appbar-height: 56px;
+  --navbar-height: 64px;
+  --fab-border-width: 10px;
+}
+.recipe h1 {
+  font-weight: 700;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 2.25rem; /* 36px */
+  line-height: 2.5rem; /* 40px */
+}
+
+.recipe h2 {
+  font-weight: 700;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+}
