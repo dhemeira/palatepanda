@@ -57,7 +57,7 @@
               ">
               {{ recipe.title }}
             </p>
-            <DefaultButton :to="`/receptek/${recipe.id}`">Megtekint</DefaultButton>
+            <DefaultButton :to="`/receptek/${recipe.author}/${recipe.id}`">Megtekint</DefaultButton>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@ const recipe = useRecipe();
 /** Array of recipes read from database */
 const recipes = useState(
   'userRecipes',
-  () => [] as { id: string; title: string; coverImage?: string }[]
+  () => [] as { id: string; title: string; coverImage?: string; author: string }[]
 );
 /** The search query */
 const query = useState('searchQuery', () => '');

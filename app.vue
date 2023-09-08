@@ -29,6 +29,7 @@ useHead({
     { rel: 'icon', href: `${settings.APP_URL}/favicon.ico` },
     { rel: 'mask-icon', href: `${settings.APP_URL}/mask-icon.svg`, color: '#FFFFFF' },
     { rel: 'apple-touch-icon', href: `${settings.APP_URL}/apple-touch-icon.png`, sizes: '180x180' },
+    { rel: 'manifest', href: '/manifest.webmanifest' },
   ],
 });
 useServerSeoMeta({

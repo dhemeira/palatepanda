@@ -28,41 +28,35 @@ const data = useState('singleRecipeData', () => '');
 const coverImage = useState('singleRecipeCoverImage', () => undefined);
 const route = useRoute();
 
-const user = useCurrentUser();
-
 const db = useFirestore();
 const _database = getFirestore(db.app);
 
-definePageMeta({
-  middleware: ['auth'],
-});
-
-onMounted(() => {
-  watch(
-    () => route.params.id,
-    () => {
-      if (route.params.id) {
-        watch(
-          () => user.value,
-          () => {
+watch(
+  () => route.params.author,
+  () => {
+    if (route.params.author) {
+      watch(
+        () => route.params.id,
+        () => {
+          if (route.params.id) {
             data.value = '';
             coverImage.value = undefined;
-            if (user.value) readFromDb(route.params?.id as string);
-          },
-          { immediate: true }
-        );
-      }
-    },
-    { immediate: true }
-  );
-});
+            readFromDb(route.params?.author as string, route.params?.id as string);
+          }
+        },
+        { immediate: true }
+      );
+    }
+  },
+  { immediate: true }
+);
 
 /**
  * Reads the requested recipe from the database and assigns the received data to variables
  * @param id The id of the requested recipe
  */
-async function readFromDb(id: string) {
-  const _docRef = doc(_database, `users/${user.value?.uid}/recipes`, id);
+async function readFromDb(author: string, id: string) {
+  const _docRef = doc(_database, `users/${author}/recipes`, id);
   const _docSnap = await getDoc(_docRef);
 
   if (_docSnap.exists()) {

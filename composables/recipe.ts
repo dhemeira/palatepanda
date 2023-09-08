@@ -37,8 +37,10 @@ export const useRecipe = () => {
           id: doc.id,
           title: doc.data().title,
           coverImage: doc.data().coverImage,
+          author: doc.ref.path.split('/')[1],
         });
-      else recipes.push({ id: doc.id, title: doc.data().title });
+      else
+        recipes.push({ id: doc.id, title: doc.data().title, author: doc.ref.path.split('/')[1] });
     });
 
     return recipes;
@@ -57,8 +59,10 @@ export const useRecipe = () => {
           id: doc.id,
           title: doc.data().title,
           coverImage: doc.data().coverImage,
+          author: doc.ref.path.split('/')[1],
         });
-      else recipes.push({ id: doc.id, title: doc.data().title });
+      else
+        recipes.push({ id: doc.id, title: doc.data().title, author: doc.ref.path.split('/')[1] });
     });
 
     return recipes;
