@@ -1,0 +1,33 @@
+<template>
+  <a
+    href="#main"
+    :class="[
+      'absolute',
+      'z-50',
+      'opacity-0',
+      'bg-black',
+      'transition-all',
+      'text-center',
+      'text-white',
+      'p-5',
+      'left-0',
+      'top-4',
+      'rounded-r-3xl',
+      'pl-12',
+      'max-sm:-translate-x-72',
+      'focus:opacity-100',
+      'max-sm:focus:translate-x-0',
+      'sm:top-0',
+      'sm:left-20',
+      'sm:pl-5',
+      'sm:pt-6',
+      'sm:rounded-t-none',
+      'sm:rounded-b-3xl',
+      'sm:-translate-y-28',
+      'sm:focus:translate-y-0',
+    ]">
+    Ugrás az oldal
+    <br />
+    tartalmára
+  </a>
+</template>

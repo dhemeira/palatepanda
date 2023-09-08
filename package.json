@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "lakics-peter-nuxt",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -7,13 +7,25 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "commit": "cz"
+    "type-check": "tsc --noEmit -p tsconfig.json --composite false",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier --write .",
+    "commit-only": "cz",
+    "checks-only": "run-p format lint type-check",
+    "commit": "run-s checks-only commit-only",
+    "push-only": "git push",
+    "push": "run-s checks-only push-only"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "@vue/eslint-config-typescript": "^11.0.3",
+    "eslint-plugin-vue": "^9.11.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@vite-pwa/nuxt": "^0.1.0",
     "commitizen": "^4.3.0",
+    "npm-run-all": "^4.1.5",
     "nuxt": "^3.7.1",
     "prettier": "3.0.3",
     "tailwind-material-colors": "^1.0.1"
@@ -30,6 +42,7 @@
     "firebase": "^9.23.0",
     "firebase-admin": "^11.10.1",
     "firebase-functions": "^4.4.1",
+    "marked": "^5.1.0",
     "nuxt-vuefire": "^0.2.19",
     "vuefire": "^3.1.16"
   }

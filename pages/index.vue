@@ -1,20 +1,25 @@
 <template>
-  <div>Kezdőlap</div>
-  {{ user?.email }}
-  {{ user?.displayName }}
-  <button @click="auth.login(config.public.email, config.public.password)">Login</button>
-
-  <NuxtLink to="/receptek">Receptek</NuxtLink>
-  <NuxtLink to="/receptek/hU6RkXvWwI64LrT5Y2Pt">Recepthez</NuxtLink>
+  <ViewWrapper
+    :class="['flex', 'items-center', 'flex-col', 'md:flex-row', 'justify-center', 'gap-8']">
+    <div :class="['w-1/2', 'hidden', 'md:flex', 'justify-end', 'items-center']">
+      <SvgsHomeSvg
+        style="height: 600px; max-height: calc(100vh - 56px - 32px); min-height: 450px" />
+    </div>
+    <div :class="[isSmallScreen ? 'w-full' : 'w-1/2']">
+      <LazyHomepageLoginForm v-if="!user" />
+      <LazyHomepageLoginWelcome v-else />
+    </div>
+  </ViewWrapper>
 </template>
 <script setup lang="ts">
 import settings from '@/appsettings.json';
 const user = useCurrentUser();
-const auth = useAuth();
+
+/** Is the screen small */
+const isSmallScreen = useState('isSmallScreen');
 
 const title = 'Kezdőlap';
 const description = 'Lakics Péter weboldala.';
-const config = useRuntimeConfig();
 
 useServerSeoMeta({
   title: `${title} | ${settings.APP_NAME}`,
@@ -23,6 +28,5 @@ useServerSeoMeta({
   ogDescription: description,
   ogImage: `${settings.APP_URL}/logo.png`,
   robots: 'index, follow',
-  ogUrl: `${settings.APP_URL}/`,
 });
 </script>

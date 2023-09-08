@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@vite-pwa/nuxt', 'nuxt-vuefire', '@nuxtjs/tailwindcss'],
+  modules: ['@vite-pwa/nuxt', 'nuxt-vuefire', '@nuxtjs/tailwindcss', '@nuxtjs/eslint-module'],
   ssr: true,
   pwa: {
     includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
@@ -49,12 +49,6 @@ export default defineNuxtConfig({
       storageBucket: 'lakics-peter.appspot.com',
       messagingSenderId: '645413753292',
       appId: '1:645413753292:web:21f7cf3f8043aefa900d69',
-    },
-  },
-  runtimeConfig: {
-    public: {
-      email: process.env.TEMP_EMAIL,
-      password: process.env.TEMP_PASSWORD,
     },
   },
 });
