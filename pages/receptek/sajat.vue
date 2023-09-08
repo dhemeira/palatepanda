@@ -68,17 +68,30 @@
 import settings from '@/appsettings.json';
 import { mdiMagnify } from '@mdi/js';
 
+definePageMeta({
+  middleware: ['auth'],
+});
+
+const user = useCurrentUser();
 const recipe = useRecipe();
 
 /** Array of recipes read from database */
 const recipes = useState(
-  'allRecipes',
+  'userRecipes',
   () => [] as { id: string; title: string; coverImage?: string }[]
 );
 /** The search query */
 const query = useState('searchQuery', () => '');
 
-recipes.value = await recipe.readRecipeList();
+/** When user gets authenticated, read recipes from database */
+watch(
+  () => user.value,
+  (currentValue) => {
+    recipes.value = [];
+    if (currentValue) readFromDb();
+  },
+  { immediate: true }
+);
 
 /**
  * Returns the recipes that fit the search query as an array.
@@ -96,8 +109,15 @@ const recipesFiltered = computed(() => {
   });
 });
 
-const title = 'Receptek';
-const description = 'Receptek megtekintése. Lakics Péter weboldala.';
+/**
+ * Reads the authenticated user's recipes and pushes them into the recipes array
+ */
+async function readFromDb() {
+  recipes.value = await recipe.readOwnRecipeList();
+}
+
+const title = 'Saját Receptek';
+const description = 'Saját receptek megtekintése. Lakics Péter weboldala.';
 useServerSeoMeta({
   title: `${title} | ${settings.APP_NAME}`,
   ogTitle: `${title} | ${settings.APP_NAME}`,

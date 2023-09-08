@@ -11,11 +11,11 @@
     <nav
       tabindex="-1"
       :class="[
-        'h-full overflow-y-auto bg-background relative overflow-x-hidden transition-all group px-2 overscroll-contain dark:!text-white !text-black',
+        'sidebar h-full overflow-y-auto bg-background relative overflow-x-hidden transition-all group px-2 overscroll-contain dark:!text-white !text-black',
         isSmallScreen ? 'w-64 h-full' : 'h-full w-14 hover:w-64',
         isSmallScreen && !showSidebar ? 'pointer-events-none' : 'pointer-events-auto',
       ]">
-      <div class="bg-inverse-primary/10 absolute inset-0 pointer-events-none"></div>
+      <div class="bg-inverse-primary/10 fixed inset-0 pointer-events-none w-[inherit]"></div>
       <div
         v-if="user"
         class="flex flex-row gap-4 py-2 my-3 px-2 justify-start w-60 h-10 items-center rounded max-w-full">
@@ -95,6 +95,7 @@ import {
   mdiMoonWaningCrescent,
   mdiLogout,
   mdiLogin,
+  mdiNotebookHeart,
 } from '@mdi/js';
 
 const user = useCurrentUser();
@@ -109,7 +110,8 @@ const showSidebar = useState('showSidebar');
 /** The data of the links in the sidebar */
 const sidebarLinks = [
   { url: '/', icon: mdiHome, name: 'Kezdőlap', auth: false },
-  { url: '/receptek', icon: mdiNotebook, name: 'Receptek', auth: true },
+  { url: '/receptek', icon: mdiNotebook, name: 'Receptek', auth: false },
+  { url: '/receptek/sajat', icon: mdiNotebookHeart, name: 'Saját Receptek', auth: true },
   { url: '/profil', icon: mdiAccountEdit, name: 'Profil', auth: true },
 ];
 
@@ -134,5 +136,13 @@ function themeChange() {
 <style scoped>
 .router-link-exact-active:not(.login) {
   @apply bg-inverse-primary;
+}
+
+.sidebar {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.sidebar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 </style>
