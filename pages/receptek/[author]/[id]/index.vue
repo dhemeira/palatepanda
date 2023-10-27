@@ -23,20 +23,14 @@
 import settings from '@/appsettings.json';
 import { marked } from 'marked';
 import { doc, getDoc, getFirestore } from 'firebase/firestore/lite';
-import NoSleep from 'nosleep.js';
+
 const data = useState('singleRecipeData', () => '');
 const coverImage = useState('singleRecipeCoverImage', () => undefined);
 const route = useRoute();
 
 const db = useFirestore();
 const _database = getFirestore(db.app);
-var noSleep = new NoSleep();
-onMounted(() => {
-  noSleep.enable();
-});
-onBeforeUnmount(() => {
-  noSleep.disable();
-});
+
 watch(
   () => route.params.author,
   () => {
