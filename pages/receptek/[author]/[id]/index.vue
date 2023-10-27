@@ -4,7 +4,7 @@
       v-if="coverImage"
       :class="['h-52', 'xl:h-72', 'object-cover', 'w-full']"
       :src="coverImage" />
-    <div :class="['w-3/4', 'mx-auto']">
+    <div :class="['w-full', 'md:w-3/4', 'mx-auto']">
       <div
         style="line-height: 2"
         class="recipe"
