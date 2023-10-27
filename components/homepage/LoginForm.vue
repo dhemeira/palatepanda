@@ -12,6 +12,7 @@
       <h1 class="text-3xl font-bold">{{ settings.APP_NAME }}</h1>
     </span>
     <form
+      v-if="!forgottenPw"
       @submit.prevent="loginUser"
       autocomplete="on">
       <FormInput
@@ -41,11 +42,30 @@
         Belépés
       </DefaultButton>
     </form>
+    <form
+      v-else
+      @submit.prevent="resetPw"
+      autocomplete="on">
+      <FormInput
+        :icon="mdiEmail"
+        v-model="emailReset"
+        type="email"
+        autocomplete="email"
+        name="email"
+        id="email"
+        placeholder="Email cím" />
+      <DefaultButton
+        class="w-full"
+        type="submit"
+        :loading="loading">
+        Jelszóvisszaállítás
+      </DefaultButton>
+    </form>
     <div class="flex justify-end my-4">
       <span
         class="hover:text-black dark:hover:text-white cursor-pointer underline decoration-dotted decoration-2 underline-offset-4 text-black/50 dark:text-white/75"
-        @click="resetPw">
-        Elfelejtett jelszó
+        @click="changeForm">
+        {{ forgottenPw ? 'Bejelentkezés' : 'Elfelejtett jelszó' }}
       </span>
     </div>
     <AlertInline
@@ -64,6 +84,8 @@ import { mdiEmail, mdiLock } from '@mdi/js';
 const showpw = useState('showPassword', () => false);
 /** The email address used to login */
 const email = useState('loginEmail', () => '');
+/** The email address used to reset password */
+const emailReset = useState('resetEmail', () => '');
 /** The password used to login */
 const pw = useState('loginPassword', () => '');
 /** Controls the loading state of the login button */
@@ -72,6 +94,8 @@ const loading = useState('loginLoading', () => false);
 const { showAlert, alertType, alertMessage, openAlert } = useAlert();
 /** Auth object */
 const auth = useAuth();
+
+const forgottenPw = useState('forgottenPassword', () => false);
 
 /** Is the screen small */
 const isSmallScreen = useState('isSmallScreen');
@@ -95,15 +119,28 @@ async function loginUser() {
   loading.value = false;
 }
 async function resetPw() {
-  if (!email.value) {
+  if (!emailReset.value) {
     openAlert(errorHandler({ code: 'email-empty' }));
     return;
   }
+  loading.value = true;
 
-  let _res = await auth.resetPassword(email.value.trim().toLowerCase());
+  let _res = await auth.resetPassword(emailReset.value.trim().toLowerCase());
   if (_res) openAlert(errorHandler({ code: _res }));
   if (!_res) {
     openAlert(successHandler({ code: 'password-reset-sent' }), 'success');
   }
+  emailReset.value = '';
+  forgottenPw.value = false;
+  loading.value = false;
+}
+
+function changeForm() {
+  forgottenPw.value = !forgottenPw.value;
+  showAlert.value = false;
+  emailReset.value = '';
+  email.value = '';
+  pw.value = '';
+  showpw.value = false;
 }
 </script>
