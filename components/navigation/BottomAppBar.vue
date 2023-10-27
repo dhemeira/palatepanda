@@ -78,7 +78,7 @@ const props = defineProps<{
 
 /** Checks wheter the current view is the Recipes view */
 const isRecipesView = computed(() => {
-  return props.button == 'receptek';
+  return props.button == 'receptek' || props.button == 'receptek-sajat';
 });
 
 /** Checks wheter the current view is the Recipe view */
