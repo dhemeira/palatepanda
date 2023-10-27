@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="`/receptek/${route.params?.id}/szerkesztes`"
+    :to="`/receptek/${route.params.author}/${route.params?.id}/szerkesztes`"
     tabindex="-1"
     :class="[
       'flex items-center shadow-xl justify-center absolute -top-14 w-14 translate-x-1/2 translate-y-1/2 transition-all duration-500 ease-out bg-secondary-container rounded-full aspect-square',
