@@ -4,7 +4,7 @@
       v-if="coverImage"
       :class="['h-52', 'xl:h-72', 'object-cover', 'w-full']"
       :src="coverImage" />
-    <div :class="['w-3/4', 'mx-auto']">
+    <div :class="['w-full', 'md:w-3/4', 'mx-auto']">
       <div
         style="line-height: 2"
         class="recipe"
@@ -23,20 +23,14 @@
 import settings from '@/appsettings.json';
 import { marked } from 'marked';
 import { doc, getDoc, getFirestore } from 'firebase/firestore/lite';
-import NoSleep from 'nosleep.js';
+
 const data = useState('singleRecipeData', () => '');
 const coverImage = useState('singleRecipeCoverImage', () => undefined);
 const route = useRoute();
 
 const db = useFirestore();
 const _database = getFirestore(db.app);
-var noSleep = new NoSleep();
-onMounted(() => {
-  noSleep.enable();
-});
-onBeforeUnmount(() => {
-  noSleep.disable();
-});
+
 watch(
   () => route.params.author,
   () => {

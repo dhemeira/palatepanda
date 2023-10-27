@@ -76,13 +76,21 @@ const router = useRouter();
 onMounted(() => {
   /** When route changes and user is loaded, reads the recipe from databse to be edited */
   watch(
-    () => route.params.id,
+    () => route.params.author,
     () => {
-      if (route.params.id) {
+      if (route.params.author) {
         watch(
-          () => user.value,
+          () => route.params.id,
           () => {
-            if (user.value) readFromDb(route.params?.id as string);
+            if (route.params.id) {
+              watch(
+                () => user.value,
+                () => {
+                  if (user.value) readFromDb(route.params?.id as string);
+                },
+                { immediate: true }
+              );
+            }
           },
           { immediate: true }
         );
