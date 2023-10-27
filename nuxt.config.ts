@@ -51,4 +51,7 @@ export default defineNuxtConfig({
       appId: '1:645413753292:web:21f7cf3f8043aefa900d69',
     },
   },
+  eslint: {
+    lintOnStart: false,
+  },
 });

@@ -41,7 +41,7 @@
         </div>
       </div>
       <LazyFabsButtonEditRecipe
-        v-if="isRecipeView"
+        v-if="isRecipeView && route.params.author == user?.uid"
         :class="[
           'transition-all duration-300',
           isFabHidden ? 'opacity-0 pointer-events-none' : 'delay-700',
@@ -65,6 +65,8 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiAccount, mdiMenu } from '@mdi/js';
 
 const user = useCurrentUser();
+/** Route object */
+const route = useRoute();
 /** Controls sidebar visibility on small screens  */
 const showSidebar = useState('showSidebar');
 
@@ -81,7 +83,7 @@ const isRecipesView = computed(() => {
 
 /** Checks wheter the current view is the Recipe view */
 const isRecipeView = computed(() => {
-  return props.button == 'receptek-id';
+  return props.button == 'receptek-author-id';
 });
 
 /** Checks wheter the FAB is hidden */
