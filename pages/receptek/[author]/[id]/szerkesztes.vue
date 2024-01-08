@@ -7,7 +7,7 @@
       :type="alertType" />
     <div class="flex gap-2">
       <div :class="['flex', 'flex-col', 'w-1/2', 'gap-2', 'h-[calc(100vh-32px)]']">
-        <h2 class="text-xl font-bold my-2">Új recept</h2>
+        <h2 class="text-xl font-bold my-2">Recept szerkesztése</h2>
         <textarea
           :class="[
             'p-2',

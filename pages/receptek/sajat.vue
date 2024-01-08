@@ -57,7 +57,9 @@
               ">
               {{ recipe.title }}
             </p>
-            <DefaultButton :to="`/receptek/${recipe.author}/${recipe.id}`">Megtekint</DefaultButton>
+            <DefaultButton :to="`/receptek/${recipe.author}/${recipe.id}?redirect=sajat`">
+              Megtekint
+            </DefaultButton>
           </div>
         </div>
       </div>

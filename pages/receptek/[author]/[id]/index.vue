@@ -10,7 +10,24 @@
         class="recipe"
         v-if="data"
         v-html="markdownToHtml()"></div>
+      <div class="mt-4 flex justify-end">
+        <div class="flex items-center font-bold gap-2 bg-inverse-primary/10 p-4 w-fit rounded">
+          <img
+            v-if="authorName"
+            :class="['aspect-square rounded-full ml-1 w-8 h-8']"
+            :src="avatarURL"
+            alt="" />
+          {{ authorName ?? 'Nincs szerző' }}
+        </div>
+      </div>
       <DefaultButton
+        v-if="route.query?.redirect && user"
+        class="mt-8"
+        :to="'/receptek/' + route.query?.redirect">
+        Vissza a receptekhez
+      </DefaultButton>
+      <DefaultButton
+        v-else
         class="mt-8"
         to="/receptek">
         Vissza a receptekhez
@@ -25,8 +42,10 @@ import { marked } from 'marked';
 import { doc, getDoc, getFirestore } from 'firebase/firestore/lite';
 
 const data = useState('singleRecipeData', () => '');
+const authorName = useState('singleRecipeAuthorName', () => '');
 const coverImage = useState('singleRecipeCoverImage', () => undefined);
 const route = useRoute();
+const user = useCurrentUser();
 
 const db = useFirestore();
 const _database = getFirestore(db.app);
@@ -61,6 +80,7 @@ async function readFromDb(author: string, id: string) {
 
   if (_docSnap.exists()) {
     data.value = _docSnap.data()?.md;
+    authorName.value = _docSnap.data()?.name;
     coverImage.value = _docSnap.data()?.coverImage;
   } else {
     showError({
@@ -83,6 +103,15 @@ function markdownToHtml() {
     });
   }
 }
+
+/** The URL of the image used as the avatar of the current user */
+const avatarURL = computed(() => {
+  let _formattedName = (authorName.value ?? '')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(' ', '');
+  return `https://source.boringavatars.com/marble/64/${_formattedName}`;
+});
 
 const title = ref('Recept');
 const description = ref('Recept megtekintése. Lakics Péter weboldala.');
