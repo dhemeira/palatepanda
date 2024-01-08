@@ -88,7 +88,10 @@ const isRecipeView = computed(() => {
 
 /** Checks wheter the FAB is hidden */
 const isFabHidden = computed(() => {
-  return (!isRecipeView.value && !isRecipesView.value) || props.hideFab;
+  return (
+    (!(isRecipeView.value && route.params.author == user.value?.uid) && !isRecipesView.value) ||
+    props.hideFab
+  );
 });
 
 /** The URL of the image used as the avatar of the current user */
