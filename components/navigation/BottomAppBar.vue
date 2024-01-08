@@ -89,7 +89,7 @@ const isRecipeView = computed(() => {
 /** Checks wheter the FAB is hidden */
 const isFabHidden = computed(() => {
   return (
-    (!(isRecipeView && route.params.author == user.value?.uid) && !isRecipesView.value) ||
+    (!(isRecipeView.value && route.params.author == user.value?.uid) && !isRecipesView.value) ||
     props.hideFab
   );
 });
