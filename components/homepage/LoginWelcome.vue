@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[isSmallScreen ? 'mx-auto' : '']"
+    :class="[device.isMobileOrTablet ? 'mx-auto' : '']"
     style="max-width: 600px; height: 450px">
     <span class="flex items-center justify-center mb-6">
       <img
@@ -92,8 +92,7 @@ const countRecipes = useState('userRecipesCount', () => 0);
 /** Controls the loader state while waiting for the count */
 const waitingForCount = useState('watingForCount', () => true);
 
-/** Is the screen small */
-const isSmallScreen = useState('isSmallScreen');
+const device = useDevice();
 
 onMounted(() => {
   /** When user gets authenticated, read recipes from database */

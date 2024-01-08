@@ -5,9 +5,9 @@
       <SvgsHomeSvg
         style="height: 600px; max-height: calc(100vh - 56px - 32px); min-height: 450px" />
     </div>
-    <div :class="[isSmallScreen ? 'w-full' : 'w-1/2']">
+    <div :class="[device.isMobileOrTablet ? 'w-full' : 'w-1/2']">
       <LazyHomepageLoginForm v-if="!user" />
-      <LazyHomepageLoginWelcome v-else />
+      <LazyHomepageLoginWelcome v-if="user" />
     </div>
   </ViewWrapper>
 </template>
@@ -15,8 +15,7 @@
 import settings from '@/appsettings.json';
 const user = useCurrentUser();
 
-/** Is the screen small */
-const isSmallScreen = useState('isSmallScreen');
+const device = useDevice();
 
 const title = 'Kezdőlap';
 const description = 'Lakics Péter weboldala.';

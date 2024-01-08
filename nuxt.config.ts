@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@vite-pwa/nuxt', 'nuxt-vuefire', '@nuxtjs/tailwindcss', '@nuxtjs/eslint-module'],
+  modules: [
+    '@vite-pwa/nuxt',
+    'nuxt-vuefire',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/device',
+  ],
   ssr: true,
   pwa: {
     includeAssets: ['favicon.ico', 'apple-touch-icon.png'],

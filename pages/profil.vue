@@ -1,5 +1,5 @@
 <template>
-  <ViewWrapper :class="isSmallScreen ? 'w-full' : 'w-3/4 mx-auto'">
+  <ViewWrapper :class="device.isMobileOrTablet ? 'w-full' : 'w-3/4 mx-auto'">
     <h1 :class="['mt-2 mb-6', 'text-3xl', 'font-bold']">Profil</h1>
     <div
       :class="['flex', 'flex-col', 'mb-4']"
@@ -103,8 +103,7 @@ const { showAlert, alertType, alertMessage, openAlert } = useAlert();
 /** Controls wheter to show or hide the characters in the password field */
 const showpw = useState('showNewPassword', () => false);
 
-/** Is the screen small */
-const isSmallScreen = useState('isSmallScreen');
+const device = useDevice();
 
 const auth = useAuth();
 const user = useCurrentUser();

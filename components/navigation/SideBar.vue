@@ -5,15 +5,15 @@
       @click="showSidebar = !showSidebar"
       :class="[
         'absolute bg-black/20 top-0 left-0 right-0 bottom-0 -z-10',
-        isSmallScreen ? '' : 'hidden',
+        device.isMobileOrTablet ? '' : 'hidden',
         !showSidebar ? 'pointer-events-none' : 'pointer-events-auto',
       ]"></div>
     <nav
       tabindex="-1"
       :class="[
         'sidebar h-full overflow-y-auto bg-background relative overflow-x-hidden transition-all group px-2 overscroll-contain dark:!text-white !text-black',
-        isSmallScreen ? 'w-64 h-full' : 'h-full w-14 hover:w-64',
-        isSmallScreen && !showSidebar ? 'pointer-events-none' : 'pointer-events-auto',
+        device.isMobileOrTablet ? 'w-64 h-full' : 'h-full w-14 hover:w-64',
+        device.isMobileOrTablet && !showSidebar ? 'pointer-events-none' : 'pointer-events-auto',
       ]">
       <div class="bg-inverse-primary/10 fixed inset-0 pointer-events-none w-[inherit]"></div>
       <div
@@ -22,7 +22,7 @@
         <img
           :class="[
             'min-w-[24px] min-h-[24px] max-w-[40px] max-h-[40px] aspect-square rounded-full transition-all',
-            isSmallScreen ? 'w-10 h-10' : 'w-6 h-6 group-hover:w-10 group-hover:h-10',
+            device.isMobileOrTablet ? 'w-10 h-10' : 'w-6 h-6 group-hover:w-10 group-hover:h-10',
           ]"
           :src="avatarURL"
           alt="" />
@@ -31,7 +31,7 @@
       <NuxtLink
         v-else
         to="/"
-        :tabindex="!isSmallScreen || showSidebar ? 0 : -1"
+        :tabindex="!device.isMobileOrTablet || showSidebar ? 0 : -1"
         class="login flex flex-row gap-8 py-2 my-3 px-2 justify-start w-60 h-10 items-center hover:bg-inverse-primary/50 rounded max-w-full">
         <svg-icon
           class="w-6 h-6 min-w-[24px] min-h-[24px]"
@@ -45,7 +45,7 @@
         v-for="link in sidebarLinks"
         :key="link.url">
         <NuxtLink
-          :tabindex="!isSmallScreen || showSidebar ? 0 : -1"
+          :tabindex="!device.isMobileOrTablet || showSidebar ? 0 : -1"
           v-if="!link.auth || user"
           :to="link.url"
           class="flex flex-row gap-8 py-2 my-1 px-2 justify-start w-60 h-10 items-center hover:bg-inverse-primary/50 rounded max-w-full">
@@ -60,7 +60,7 @@
       <hr class="my-3" />
 
       <button
-        :tabindex="!isSmallScreen || showSidebar ? 0 : -1"
+        :tabindex="!device.isMobileOrTablet || showSidebar ? 0 : -1"
         class="flex flex-row gap-8 py-2 my-1 px-2 justify-start w-60 h-10 items-center hover:bg-inverse-primary/50 rounded max-w-full"
         @click="themeChange">
         <svg-icon
@@ -72,7 +72,7 @@
         </span>
       </button>
       <button
-        :tabindex="!isSmallScreen || showSidebar ? 0 : -1"
+        :tabindex="!device.isMobileOrTablet || showSidebar ? 0 : -1"
         class="flex flex-row gap-8 py-2 my-1 px-2 justify-start w-60 h-10 items-center hover:bg-inverse-primary/50 rounded max-w-full"
         v-if="user"
         @click="auth.logout()">
@@ -100,10 +100,9 @@ import {
 
 const user = useCurrentUser();
 const auth = useAuth();
-
+const device = useDevice();
 const theme = useState('theme');
-/** Is the screen small */
-const isSmallScreen = useState('isSmallScreen');
+
 /** Controls sidebar visibility on small screens  */
 const showSidebar = useState('showSidebar');
 

@@ -2,7 +2,7 @@
   <div>
     <div
       :class="[
-        isSmallScreen ? 'px-2 min-h-[calc(100vh-56px)]' : 'px-6 min-h-screen',
+        device.isMobileOrTablet ? 'px-2 min-h-[calc(100vh-56px)]' : 'px-6 min-h-screen',
         'w-full py-4',
       ]"
       v-bind="$attrs">
@@ -11,6 +11,5 @@
   </div>
 </template>
 <script setup lang="ts">
-/** Is the screen small */
-const isSmallScreen = useState('isSmallScreen');
+const device = useDevice();
 </script>
