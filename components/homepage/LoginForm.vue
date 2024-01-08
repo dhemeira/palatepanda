@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[isSmallScreen ? 'mx-auto' : '']"
+    :class="[device.isMobileOrTablet ? 'mx-auto' : '']"
     style="max-width: 600px; height: 450px">
     <span class="flex justify-center items-center mb-6">
       <img
@@ -97,8 +97,7 @@ const auth = useAuth();
 
 const forgottenPw = useState('forgottenPassword', () => false);
 
-/** Is the screen small */
-const isSmallScreen = useState('isSmallScreen');
+const device = useDevice();
 
 /**
  * Logs in the user or show error if unsuccesful

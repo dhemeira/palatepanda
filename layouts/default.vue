@@ -3,20 +3,25 @@
     tabindex="-1"
     :class="['wrapper', 'bg-primary-container', 'outline-none', theme === 'dark' ? 'dark' : '']">
     <NavigationSkipToMain />
-    <NavigationSideBar :class="!isSmallScreen || showSidebar ? 'opacity-100' : 'opacity-0'" />
+    <NavigationSideBar
+      :class="!device.isMobileOrTablet || showSidebar ? 'opacity-100' : 'opacity-0'" />
     <main
       tabindex="-1"
       id="main"
-      :class="['min-h-screen outline-none', 'bg-background', isSmallScreen ? '' : 'ml-14']">
+      :class="[
+        'min-h-screen outline-none',
+        'bg-background',
+        device.isMobileOrTablet ? '' : 'ml-14',
+      ]">
       <slot />
       <LazyNavigationFooterDefault />
     </main>
     <component
-      :is="isSmallScreen ? NavigationBottomAppBar : NavigationFabLayout"
-      :right="isSmallScreen ? false : true"
+      :is="device.isMobileOrTablet ? NavigationBottomAppBar : NavigationFabLayout"
+      :right="device.isMobileOrTablet ? false : true"
       :button="route.name"
-      v-if="isSmallScreen || !showSidebar"
-      :hide-fab="isSmallScreen ? showSidebar : false" />
+      v-if="device.isMobileOrTablet || !showSidebar"
+      :hide-fab="device.isMobileOrTablet ? showSidebar : false" />
   </div>
 </template>
 <script setup lang="ts">
@@ -26,8 +31,7 @@ import NavigationBottomAppBar from '@/components/navigation/BottomAppBar.vue';
 const route = useRoute();
 /** Theme of the site, either 'dark' or 'light' */
 const theme = useState('theme');
-/** Is the screen small */
-const isSmallScreen = useState('isSmallScreen');
+const device = useDevice();
 /** Controls sidebar visibility on small screens  */
 const showSidebar = useState('showSidebar');
 </script>

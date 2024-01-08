@@ -1,21 +1,20 @@
 <template>
   <VitePwaManifest />
   <NuxtLayout>
-    <NuxtPage :class="isSmallScreen ? 'min-h-[calc(100vh-56px)]' : 'min-h-screen'" />
+    <NuxtPage :class="device.isMobileOrTablet ? 'min-h-[calc(100vh-56px)]' : 'min-h-screen'" />
   </NuxtLayout>
 </template>
 <script setup lang="ts">
 import settings from '@/appsettings.json';
-import { debounce, cookieValue } from '@/helpers/index';
-
+import { cookieValue } from '@/helpers/index';
+const device = useDevice();
 const router = useRouter();
 const route = useRoute();
 const user = useCurrentUser();
 
 /** Theme of the site, either 'dark' or 'light' */
 const theme = useState('theme', () => 'dark');
-/** Is the screen small */
-const isSmallScreen = useState('isSmallScreen', () => false);
+
 /** Controls sidebar visibility on small screens  */
 const showSidebar = useState('showSidebar', () => false);
 const alert = useAlert();
@@ -48,16 +47,6 @@ onMounted(() => {
   if (process.dev) {
     import('@/helpers/debugUtils').then((e) => e.logActiveElement());
   }
-
-  const _smallSize = 960;
-  isSmallScreen.value = window.innerWidth < _smallSize;
-
-  window.addEventListener(
-    'resize',
-    debounce(() => {
-      isSmallScreen.value = window.innerWidth < _smallSize;
-    }, 500)
-  );
 
   watch(user, (user, prevUser) => {
     if (prevUser && !user) {
