@@ -25,6 +25,7 @@
         'mx-auto',
         'mt-4',
       ]">
+      <div :class="['col-span-full', '-mb-4']">{{ recipesFiltered.length }} recept</div>
       <div
         style="grid-template-rows: 1fr 52px 72px"
         :class="['max-w-xs', 'grid', 'grid-cols-1']"
