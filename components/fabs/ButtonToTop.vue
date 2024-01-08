@@ -6,7 +6,7 @@
       'flex items-center shadow-xl justify-center absolute -top-14 w-14 translate-x-1/2 translate-y-1/2 bg-secondary-container rounded-full aspect-square',
       right ? 'right' : '',
     ]"
-    v-show="showFab">
+    v-show="true">
     <svg-icon
       type="mdi"
       :path="mdiChevronUp"></svg-icon>
@@ -16,13 +16,9 @@
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiChevronUp } from '@mdi/js';
 
-const props = defineProps<{
+defineProps<{
   right: boolean;
-  hideOnScroll: boolean;
 }>();
-
-/** Controls if the button is visible or not */
-const { showFab } = useScroll(props.hideOnScroll);
 
 /** Scroll to the top of the page */
 function onClick() {
