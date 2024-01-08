@@ -46,16 +46,14 @@
           'transition-all duration-300',
           isFabHidden ? 'opacity-0 pointer-events-none' : 'delay-700',
         ]"
-        :right="right"
-        :hideOnScroll="false" />
+        :right="right" />
       <LazyFabsButtonToTop
         v-else-if="isRecipesView"
         :class="[
           'transition-all duration-300',
           isFabHidden ? 'opacity-0 pointer-events-none' : 'delay-700',
         ]"
-        :right="right"
-        :hideOnScroll="false" />
+        :right="right" />
     </div>
   </div>
 </template>

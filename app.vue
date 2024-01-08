@@ -21,11 +21,6 @@ const showSidebar = useState('showSidebar', () => false);
 const alert = useAlert();
 useHead({
   htmlAttrs: { lang: 'hu' },
-  script: [
-    {
-      src: 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver,ResizeObserver,WebAnimations,Object.fromEntries,Array.prototype.at',
-    },
-  ],
   link: [
     { rel: 'icon', href: `${settings.APP_URL}/favicon.ico` },
     { rel: 'mask-icon', href: `${settings.APP_URL}/mask-icon.svg`, color: '#FFFFFF' },

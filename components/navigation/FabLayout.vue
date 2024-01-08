@@ -3,12 +3,10 @@
     <span class="pointer-events-auto">
       <FabsButtonEditRecipe
         v-if="isRecipeView && route.params.author == user?.uid"
-        :right="right"
-        :hideOnScroll="false" />
+        :right="right" />
       <FabsButtonToTop
         v-else-if="isRecipesView"
-        :right="right"
-        :hideOnScroll="true" />
+        :right="right" />
     </span>
   </div>
 </template>
