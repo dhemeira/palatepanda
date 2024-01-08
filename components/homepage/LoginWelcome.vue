@@ -119,7 +119,7 @@ async function readFromDb() {
         countRecipes.value = _count;
         waitingForCount.value = false;
       },
-      Math.max(2500 - _timeDelta, 0)
+      Math.max(1000 - _timeDelta, 0)
     );
   } else {
     countRecipes.value = _count;
