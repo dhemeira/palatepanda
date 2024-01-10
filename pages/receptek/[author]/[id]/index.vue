@@ -4,6 +4,8 @@
       v-if="coverImage"
       :class="['h-52', 'xl:h-72', 'object-cover', 'w-full']"
       :src="coverImage" />
+    is supported: {{ isSupported }} is active: {{ isActive }}
+    <button @click="request('screen')">activate</button>
     <div :class="['w-full', 'md:w-3/4', 'mx-auto']">
       <div
         style="line-height: 2"
@@ -49,7 +51,7 @@ const user = useCurrentUser();
 
 const db = useFirestore();
 const _database = getFirestore(db.app);
-
+const { isSupported, isActive, request, release } = useWakeLock();
 watch(
   () => route.params.author,
   () => {

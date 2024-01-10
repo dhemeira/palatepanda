@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/eslint-module',
     '@nuxtjs/device',
+    '@vueuse/nuxt',
   ],
   ssr: true,
   pwa: {
