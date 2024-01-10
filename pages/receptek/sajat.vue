@@ -58,7 +58,7 @@
               ">
               {{ recipe.title }}
             </p>
-            <DefaultButton :to="`/receptek/${recipe.author}/${recipe.id}?redirect=sajat`">
+            <DefaultButton :to="`/receptek/${recipe.author}/${recipe.id}?callbackURL=sajat`">
               Megtekint
             </DefaultButton>
           </div>
