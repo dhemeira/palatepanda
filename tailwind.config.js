@@ -16,6 +16,9 @@ module.exports = withMaterialColors(
         maxHeight: {
           screen: ['100vh /* fallback for Opera, IE and etc. */', '100dvh'],
         },
+        colors: {
+          'active': '#22c55e',
+        }
       },
     },
     plugins: [],

@@ -21,7 +21,11 @@
           style="max-width: 100%; width: 24rem">
           Elnézésedet kérjük! Látogasd meg a kezdőlapot, hogy megtaláld amit keresel.
         </p>
-        <DefaultButton @click="handleError">Vissza a Kezdőlapra</DefaultButton>
+        <DefaultButton
+          @click="handleError"
+          class="w-full">
+          Vissza a Kezdőlapra
+        </DefaultButton>
       </div>
     </ViewWrapper>
   </NuxtLayout>

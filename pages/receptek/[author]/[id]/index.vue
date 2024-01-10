@@ -1,5 +1,17 @@
 <template>
   <ViewWrapper>
+    <ClientOnly>
+      <div :class="['fixed', 'bg-background', 'right-2']">
+        <div :class="['bg-primary/10', 'rounded-full', 'p-1', 'flex', 'gap-1']">
+          <div
+            :class="['w-1', 'h-1', 'rounded-full', isSupported ? 'bg-active' : 'bg-error']"
+            :title="isSupported ? 'WakeLock támogatott' : 'WakeLock nem támogatott'"></div>
+          <div
+            :class="['w-1', 'h-1', 'rounded-full', isActive ? 'bg-active' : 'bg-error']"
+            :title="isActive ? 'WakeLock aktív' : 'WakeLock inaktív'"></div>
+        </div>
+      </div>
+    </ClientOnly>
     <img
       v-if="coverImage"
       :class="['h-52', 'xl:h-72', 'object-cover', 'w-full']"
@@ -21,9 +33,9 @@
         </div>
       </div>
       <DefaultButton
-        v-if="route.query?.redirect && user"
+        v-if="route.query?.callbackURL && user"
         class="mt-8"
-        :to="'/receptek/' + route.query?.redirect">
+        :to="'/receptek/' + route.query?.callbackURL">
         Vissza a receptekhez
       </DefaultButton>
       <DefaultButton
@@ -49,7 +61,7 @@ const user = useCurrentUser();
 
 const db = useFirestore();
 const _database = getFirestore(db.app);
-
+const { isSupported, isActive, request, release } = useWakeLock();
 watch(
   () => route.params.author,
   () => {
@@ -69,6 +81,20 @@ watch(
   },
   { immediate: true }
 );
+
+onMounted(() => {
+  if (!document.hidden) {
+    request('screen');
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      request('screen');
+    }
+  });
+});
+onUnmounted(() => {
+  release();
+});
 
 /**
  * Reads the requested recipe from the database and assigns the received data to variables
