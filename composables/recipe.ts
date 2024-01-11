@@ -38,9 +38,15 @@ export const useRecipe = () => {
           title: doc.data().title,
           coverImage: doc.data().coverImage,
           author: doc.ref.path.split('/')[1],
+          authorName: doc.data().name,
         });
       else
-        recipes.push({ id: doc.id, title: doc.data().title, author: doc.ref.path.split('/')[1] });
+        recipes.push({
+          id: doc.id,
+          title: doc.data().title,
+          author: doc.ref.path.split('/')[1],
+          authorName: doc.data().name,
+        });
     });
 
     return recipes;
@@ -62,7 +68,11 @@ export const useRecipe = () => {
           author: doc.ref.path.split('/')[1],
         });
       else
-        recipes.push({ id: doc.id, title: doc.data().title, author: doc.ref.path.split('/')[1] });
+        recipes.push({
+          id: doc.id,
+          title: doc.data().title,
+          author: doc.ref.path.split('/')[1],
+        });
     });
 
     return recipes;

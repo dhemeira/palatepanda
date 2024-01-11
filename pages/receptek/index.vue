@@ -26,42 +26,51 @@
         'mt-4',
       ]">
       <div :class="['col-span-full', '-mb-4']">{{ recipesFiltered.length }} recept</div>
-      <div
-        style="grid-template-rows: 1fr 52px 72px"
-        :class="['max-w-xs', 'grid', 'grid-cols-1']"
+      <NuxtLink
+        :to="`/receptek/${recipe.author}/${recipe.id}`"
         v-for="recipe in recipesFiltered"
         :key="recipe.id">
-        <img
-          style="grid-area: 1/1/3/2"
-          :class="['object-cover', 'w-full', 'aspect-square', 'rounded-lg', 'shadow-md']"
-          v-if="recipe.coverImage"
-          :src="recipe.coverImage" />
-        <img
-          style="grid-area: 1/1/3/2"
-          :class="['object-cover', 'w-full', 'aspect-square', 'rounded-lg', 'shadow-md']"
-          v-else
-          src="/logo.png" />
-
         <div
-          :class="['mx-3', 'rounded-lg', 'bg-background', 'self-end', 'shadow-lg']"
-          style="grid-area: 2/1/4/2">
-          <div :class="['bg-primary/10', 'rounded-lg', 'p-4']">
-            <p
-              :class="['text-xl', 'mb-4']"
-              :title="recipe.title"
-              style="
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                word-wrap: break-word;
-              ">
-              {{ recipe.title }}
-            </p>
-            <DefaultButton :to="`/receptek/${recipe.author}/${recipe.id}`">Megtekint</DefaultButton>
+          style="grid-template-rows: 1fr 52px 32px"
+          :class="['max-w-xs', 'grid', 'grid-cols-1']">
+          <img
+            style="grid-area: 1/1/3/2"
+            :class="['object-cover', 'w-full', 'aspect-square', 'rounded-lg', 'shadow-md']"
+            v-if="recipe.coverImage"
+            :src="recipe.coverImage" />
+          <img
+            style="grid-area: 1/1/3/2"
+            :class="['object-cover', 'w-full', 'aspect-square', 'rounded-lg', 'shadow-md']"
+            v-else
+            src="/logo.png" />
+
+          <div
+            :class="['mx-3', 'rounded-lg', 'bg-background', 'self-end', 'shadow-lg']"
+            style="grid-area: 2/1/4/2">
+            <div :class="['bg-primary/10', 'rounded-lg', 'p-4']">
+              <p
+                :class="['text-xl', 'mb-3']"
+                :title="recipe.title"
+                style="
+                  overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+                  word-wrap: break-word;
+                ">
+                {{ recipe.title }}
+              </p>
+              <div class="flex items-center gap-1 justify-end">
+                <img
+                  :class="['aspect-square rounded-full ml-1 w-5 h-5']"
+                  :src="avatarURL(recipe.authorName)"
+                  alt="" />
+                <div class="text-xs italic">{{ recipe.authorName }}</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </ViewWrapper>
 </template>
@@ -74,7 +83,8 @@ const recipe = useRecipe();
 /** Array of recipes read from database */
 const recipes = useState(
   'allRecipes',
-  () => [] as { id: string; title: string; coverImage?: string; author: string }[]
+  () =>
+    [] as { id: string; title: string; coverImage?: string; author: string; authorName: string }[]
 );
 /** The search query */
 const query = useState('searchQuery', () => '');
@@ -96,6 +106,15 @@ const recipesFiltered = computed(() => {
     return _matchFound;
   });
 });
+
+/** The URL of the image used as the avatar of the current user */
+function avatarURL(authorName: string) {
+  let _formattedName = (authorName ?? '')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(' ', '');
+  return `https://source.boringavatars.com/marble/64/${_formattedName}`;
+}
 
 const title = 'Receptek';
 const description = 'Receptek megtekintése. Lakics Péter weboldala.';

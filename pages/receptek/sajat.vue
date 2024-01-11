@@ -26,44 +26,45 @@
         'mt-4',
       ]">
       <div :class="['col-span-full', '-mb-4']">{{ recipesFiltered.length }} recept</div>
-      <div
-        style="grid-template-rows: 1fr 52px 72px"
-        :class="['max-w-xs', 'grid', 'grid-cols-1']"
+      <NuxtLink
+        :to="`/receptek/${recipe.author}/${recipe.id}?callbackURL=sajat`"
         v-for="recipe in recipesFiltered"
         :key="recipe.id">
-        <img
-          style="grid-area: 1/1/3/2"
-          :class="['object-cover', 'w-full', 'aspect-square', 'rounded-lg', 'shadow-md']"
-          v-if="recipe.coverImage"
-          :src="recipe.coverImage" />
-        <img
-          style="grid-area: 1/1/3/2"
-          :class="['object-cover', 'w-full', 'aspect-square', 'rounded-lg', 'shadow-md']"
-          v-else
-          src="/logo.png" />
-
         <div
-          :class="['mx-3', 'rounded-lg', 'bg-background', 'self-end', 'shadow-lg']"
-          style="grid-area: 2/1/4/2">
-          <div :class="['bg-primary/10', 'rounded-lg', 'p-4']">
-            <p
-              :class="['text-xl', 'mb-4']"
-              :title="recipe.title"
-              style="
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                word-wrap: break-word;
-              ">
-              {{ recipe.title }}
-            </p>
-            <DefaultButton :to="`/receptek/${recipe.author}/${recipe.id}?callbackURL=sajat`">
-              Megtekint
-            </DefaultButton>
+          style="grid-template-rows: 1fr 52px 32px"
+          :class="['max-w-xs', 'grid', 'grid-cols-1']">
+          <img
+            style="grid-area: 1/1/3/2"
+            :class="['object-cover', 'w-full', 'aspect-square', 'rounded-lg', 'shadow-md']"
+            v-if="recipe.coverImage"
+            :src="recipe.coverImage" />
+          <img
+            style="grid-area: 1/1/3/2"
+            :class="['object-cover', 'w-full', 'aspect-square', 'rounded-lg', 'shadow-md']"
+            v-else
+            src="/logo.png" />
+
+          <div
+            :class="['mx-3', 'rounded-lg', 'bg-background', 'self-end', 'shadow-lg']"
+            style="grid-area: 2/1/4/2">
+            <div :class="['bg-primary/10', 'rounded-lg', 'p-4']">
+              <p
+                :class="['text-xl', 'mb-4']"
+                :title="recipe.title"
+                style="
+                  overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+                  word-wrap: break-word;
+                ">
+                {{ recipe.title }}
+              </p>
+              <div class="text-right text-xs italic">{{ user?.displayName }}</div>
+            </div>
           </div>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </ViewWrapper>
 </template>
