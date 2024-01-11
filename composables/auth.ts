@@ -8,10 +8,12 @@ import {
   updatePassword,
   sendPasswordResetEmail,
 } from 'firebase/auth';
+import { writeBatch, getFirestore, getDocs, collection } from 'firebase/firestore/lite';
 export const useAuth = () => {
   const auth = useFirebaseAuth() as Auth; // only exists on client side
   const user = useCurrentUser();
-
+  const db = useFirestore();
+  const _database = getFirestore(db.app);
   /**
    * Logs out the current user
    */
@@ -61,6 +63,22 @@ export const useAuth = () => {
     }).catch((error) => {
       _error = error.code;
     });
+    let counter = 0;
+    if (!_error) {
+      const batch = writeBatch(_database);
+      const _querySnapshot = await getDocs(
+        collection(_database, `users/${user.value?.uid}/recipes`)
+      );
+      _querySnapshot.forEach(async (doc) => {
+        batch.update(doc.ref, { name: username });
+        counter++;
+        if (counter == 500) {
+          await batch.commit();
+          counter = 0;
+        }
+      });
+      await batch.commit();
+    }
     return _error;
   }
 
