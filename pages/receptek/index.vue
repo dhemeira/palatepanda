@@ -49,7 +49,7 @@
             style="grid-area: 2/1/4/2">
             <div :class="['bg-primary/10', 'rounded-lg', 'p-4']">
               <p
-                :class="['text-xl', 'mb-4']"
+                :class="['text-xl', 'mb-3']"
                 :title="recipe.title"
                 style="
                   overflow: hidden;
@@ -60,7 +60,13 @@
                 ">
                 {{ recipe.title }}
               </p>
-              <div class="text-right text-xs italic">{{ recipe.authorName }}</div>
+              <div class="flex items-center gap-1 justify-end">
+                <img
+                  :class="['aspect-square rounded-full ml-1 w-5 h-5']"
+                  :src="avatarURL(recipe.authorName)"
+                  alt="" />
+                <div class="text-xs italic">{{ recipe.authorName }}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -99,6 +105,15 @@ const recipesFiltered = computed(() => {
     return _matchFound;
   });
 });
+
+/** The URL of the image used as the avatar of the current user */
+function avatarURL(authorName: string) {
+  let _formattedName = (authorName ?? '')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(' ', '');
+  return `https://source.boringavatars.com/marble/64/${_formattedName}`;
+}
 
 const title = 'Receptek';
 const description = 'Receptek megtekintése. Lakics Péter weboldala.';
