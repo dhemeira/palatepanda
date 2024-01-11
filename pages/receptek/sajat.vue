@@ -25,7 +25,24 @@
         'mx-auto',
         'mt-4',
       ]">
-      <div :class="['col-span-full', '-mb-4']">{{ recipesFiltered.length }} recept</div>
+      <div
+        v-if="recipesFiltered.length == 0 && !loading"
+        :class="['col-span-full', '-mb-4', 'text-center']">
+        A megadott keresési feltételeknek egy recept sem felel meg.
+      </div>
+      <div
+        v-else
+        :class="['col-span-full', '-mb-4', 'text-right']">
+        {{ recipesFiltered.length }} recept
+      </div>
+
+      <SkeletonRecipe v-if="loading" />
+      <SkeletonRecipe v-if="loading" />
+      <SkeletonRecipe v-if="loading" />
+      <SkeletonRecipe v-if="loading" />
+      <SkeletonRecipe v-if="loading" />
+      <SkeletonRecipe v-if="loading" />
+
       <NuxtLink
         :to="`/receptek/${recipe.author}/${recipe.id}?callbackURL=sajat`"
         v-for="recipe in recipesFiltered"
@@ -87,6 +104,9 @@ const recipes = useState(
 /** The search query */
 const query = useState('searchQuery', () => '');
 
+onUnmounted(() => {
+  query.value = '';
+});
 /** When user gets authenticated, read recipes from database */
 watch(
   () => user.value,
@@ -113,11 +133,14 @@ const recipesFiltered = computed(() => {
   });
 });
 
+const loading = useState('ownRecipeListLoading', () => true);
+
 /**
  * Reads the authenticated user's recipes and pushes them into the recipes array
  */
 async function readFromDb() {
   recipes.value = await recipe.readOwnRecipeList();
+  loading.value = false;
 }
 
 const title = 'Saját Receptek';
