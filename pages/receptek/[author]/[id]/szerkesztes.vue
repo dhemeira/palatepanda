@@ -200,6 +200,7 @@ async function saveToDb(_title: string, _markdown: string, _image?: string) {
     title: _title,
     coverImage: _image == undefined ? null : _image,
     md: _markdown,
+    name: user.value?.displayName,
   });
 }
 
