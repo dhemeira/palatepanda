@@ -5,8 +5,15 @@
       v-model="showAlert"
       :msg="alertMessage"
       :type="alertType" />
-    <div class="flex gap-2">
-      <div :class="['flex', 'flex-col', 'w-1/2', 'gap-2', 'h-[calc(100vh-32px)]']">
+    <div :class="['flex', 'gap-2', device.isMobileOrTablet ? 'flex-col' : 'flex-row']">
+      <div
+        :class="[
+          'flex',
+          'flex-col',
+          'gap-2',
+          'h-[calc(100vh-32px)]',
+          device.isMobileOrTablet ? 'w-full' : 'w-1/2',
+        ]">
         <h2 class="text-xl font-bold my-2">Recept szerkesztése</h2>
         <textarea
           :class="[
@@ -22,7 +29,15 @@
           v-model="text"
           @input="updatePreview"></textarea>
       </div>
-      <div :class="['w-1/2', 'flex', 'flex-col', 'recipe', 'gap-2', 'h-[calc(100vh-32px)]']">
+      <div
+        :class="[
+          'flex',
+          'flex-col',
+          'recipe',
+          'gap-2',
+          'h-[calc(100vh-32px)]',
+          device.isMobileOrTablet ? 'w-full' : 'w-1/2',
+        ]">
         <h2 class="text-xl font-bold my-2">Előnézet:</h2>
         <div
           :class="[
@@ -51,6 +66,7 @@ import { marked } from 'marked';
 import { setDoc, doc, getDoc, getFirestore } from 'firebase/firestore/lite';
 import settings from '@/appsettings.json';
 import { errorHandler } from '@/helpers/index';
+const device = useDevice();
 
 /** The content of the text field */
 const text = useState('textEdit', () => '');
