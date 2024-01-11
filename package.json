@@ -17,21 +17,21 @@
     "push": "run-s checks-only push-only"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
+    "@nuxt/devtools": "^1.0.6",
     "@nuxtjs/device": "^3.1.1",
     "@nuxtjs/eslint-module": "^4.1.0",
-    "@nuxtjs/tailwindcss": "^6.8.0",
-    "@vite-pwa/nuxt": "^0.1.0",
-    "@vue/eslint-config-prettier": "^7.1.0",
-    "@vue/eslint-config-typescript": "^11.0.3",
+    "@nuxtjs/tailwindcss": "^6.10.4",
+    "@vite-pwa/nuxt": "^0.4.0",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "@vue/eslint-config-typescript": "^12.0.0",
     "@vueuse/core": "^10.7.1",
     "@vueuse/nuxt": "^10.7.1",
     "commitizen": "^4.3.0",
-    "eslint-plugin-vue": "^9.11.0",
+    "eslint-plugin-vue": "^9.20.0",
     "npm-run-all": "^4.1.5",
-    "nuxt": "^3.7.1",
-    "prettier": "3.0.3",
-    "tailwind-material-colors": "^1.0.1"
+    "nuxt": "^3.9.1",
+    "prettier": "^3.1.1",
+    "tailwind-material-colors": "^1.2.0"
   },
   "config": {
     "commitizen": {
@@ -41,13 +41,13 @@
   "dependencies": {
     "@firebase/app-types": "^0.9.0",
     "@jamescoyle/vue-icon": "^0.1.2",
-    "@mdi/js": "^7.2.96",
-    "firebase": "^9.23.0",
-    "firebase-admin": "^11.10.1",
-    "firebase-functions": "^4.4.1",
-    "marked": "^5.1.0",
+    "@mdi/js": "^7.4.47",
+    "firebase": "^10.7.1",
+    "firebase-admin": "^11.11.1",
+    "firebase-functions": "^4.6.0",
+    "marked": "^11.1.1",
     "nosleep.js": "^0.12.0",
-    "nuxt-vuefire": "^0.2.19",
-    "vuefire": "^3.1.16"
+    "nuxt-vuefire": "^1.0.1",
+    "vuefire": "^3.1.22"
   }
 }
