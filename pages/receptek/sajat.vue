@@ -24,6 +24,7 @@
         'w-fit',
         'mx-auto',
         'mt-4',
+        'mb-8',
       ]">
       <div
         v-if="recipesFiltered.length == 0 && !loading"
