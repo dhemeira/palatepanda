@@ -80,7 +80,7 @@
             style="grid-area: 2/1/4/2">
             <div :class="['bg-primary/10', 'rounded-lg', 'p-4']">
               <p
-                :class="['text-xl', 'mb-4']"
+                :class="['text-xl', 'mb-3']"
                 :title="recipe.title"
                 style="
                   overflow: hidden;
@@ -91,7 +91,13 @@
                 ">
                 {{ recipe.title }}
               </p>
-              <div class="text-right text-xs italic">{{ user?.displayName }}</div>
+              <div class="flex items-center gap-1 justify-end">
+                <img
+                  :class="['aspect-square rounded-full ml-1 w-5 h-5']"
+                  :src="avatarURL(user?.displayName as string)"
+                  alt="" />
+                <div class="text-xs italic">{{ user?.displayName }}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -156,6 +162,15 @@ const loading = useState('ownRecipeListLoading', () => true);
 async function readFromDb() {
   recipes.value = await recipe.readOwnRecipeList();
   loading.value = false;
+}
+
+/** The URL of the image used as the avatar of the current user */
+function avatarURL(authorName: string) {
+  let _formattedName = (authorName ?? '')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(' ', '');
+  return `https://source.boringavatars.com/marble/64/${_formattedName}`;
 }
 
 const title = 'Saját Receptek';
