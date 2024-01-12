@@ -31,6 +31,7 @@
       <NuxtLink
         v-else
         to="/"
+        @click="showSidebar = false"
         :tabindex="!device.isMobileOrTablet || showSidebar ? 0 : -1"
         class="login flex flex-row gap-8 py-2 my-3 px-2 justify-start w-60 h-10 items-center hover:bg-inverse-primary/50 rounded max-w-full">
         <svg-icon
@@ -56,6 +57,21 @@
           <span class="inline-flex text-sm min-w-[160px]">{{ link.name }}</span>
         </NuxtLink>
       </div>
+
+      <hr
+        v-if="user"
+        class="my-3" />
+      <NuxtLink
+        :tabindex="!device.isMobileOrTablet || showSidebar ? 0 : -1"
+        v-if="user"
+        :to="'/profil'"
+        class="flex flex-row gap-8 py-2 my-1 px-2 justify-start w-60 h-10 items-center hover:bg-inverse-primary/50 rounded max-w-full">
+        <svg-icon
+          class="w-6 h-6 min-w-[24px] min-h-[24px]"
+          type="mdi"
+          :path="mdiAccountEdit"></svg-icon>
+        <span class="inline-flex text-sm min-w-[160px]">Profil</span>
+      </NuxtLink>
 
       <hr class="my-3" />
 
@@ -111,7 +127,6 @@ const sidebarLinks = [
   { url: '/', icon: mdiHome, name: 'Kezdőlap', auth: false },
   { url: '/receptek', icon: mdiNotebook, name: 'Receptek', auth: false },
   { url: '/receptek/sajat', icon: mdiNotebookHeart, name: 'Saját Receptek', auth: true },
-  { url: '/profil', icon: mdiAccountEdit, name: 'Profil', auth: true },
 ];
 
 /** The URL of the image used as the avatar of the current user */

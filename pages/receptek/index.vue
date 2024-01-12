@@ -58,6 +58,7 @@
       <SkeletonRecipe v-if="loading" />
 
       <NuxtLink
+        v-else
         :to="`/receptek/${recipe.author}/${recipe.id}`"
         v-for="recipe in recipesFiltered"
         :key="recipe.id">
@@ -124,11 +125,15 @@ const query = useState('searchQuery', () => '');
 
 onUnmounted(() => {
   query.value = '';
+  loading.value = true;
+  recipes.value = [];
 });
-
 const loading = useState('recipeListLoading', () => true);
+
 recipes.value = await recipe.readRecipeList();
-loading.value = false;
+setTimeout(() => {
+  loading.value = false;
+}, 250);
 
 /**
  * Returns the recipes that fit the search query as an array.
