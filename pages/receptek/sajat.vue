@@ -24,6 +24,7 @@
         'w-fit',
         'mx-auto',
         'mt-4',
+        'mb-8',
       ]">
       <div
         v-if="recipesFiltered.length == 0 && !loading"
@@ -58,6 +59,7 @@
       <SkeletonRecipe v-if="loading" />
 
       <NuxtLink
+        v-else
         :to="`/receptek/${recipe.author}/${recipe.id}?callbackURL=sajat`"
         v-for="recipe in recipesFiltered"
         :key="recipe.id">
@@ -127,12 +129,13 @@ const query = useState('searchQuery', () => '');
 
 onUnmounted(() => {
   query.value = '';
+  loading.value = true;
+  recipes.value = [];
 });
 /** When user gets authenticated, read recipes from database */
 watch(
   () => user.value,
   (currentValue) => {
-    recipes.value = [];
     if (currentValue) readFromDb();
   },
   { immediate: true }
@@ -161,7 +164,9 @@ const loading = useState('ownRecipeListLoading', () => true);
  */
 async function readFromDb() {
   recipes.value = await recipe.readOwnRecipeList();
-  loading.value = false;
+  setTimeout(() => {
+    loading.value = false;
+  }, 250);
 }
 
 /** The URL of the image used as the avatar of the current user */
