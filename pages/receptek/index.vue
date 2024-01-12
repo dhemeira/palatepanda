@@ -27,7 +27,21 @@
       ]">
       <div
         v-if="recipesFiltered.length == 0 && !loading"
-        :class="['col-span-full', '-mb-4', 'text-center']">
+        :class="[
+          'col-span-full',
+          'mt-8',
+          'flex',
+          'items-center',
+          'justify-center',
+          'gap-2',
+          'text-xl',
+          device.isMobileOrTablet ? 'flex-col text-center' : '',
+        ]">
+        <svg-icon
+          :class="device.isMobileOrTablet ? 'h-16 w-16' : 'h-12 w-12'"
+          type="mdi"
+          :path="mdiMagnify"></svg-icon>
+
         A megadott keresési feltételeknek egy recept sem felel meg.
       </div>
       <div
@@ -93,7 +107,9 @@
 </template>
 <script setup lang="ts">
 import settings from '@/appsettings.json';
+import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiMagnify } from '@mdi/js';
+const device = useDevice();
 
 const recipe = useRecipe();
 
