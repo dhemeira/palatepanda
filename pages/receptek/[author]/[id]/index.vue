@@ -1,7 +1,7 @@
 <template>
   <ViewWrapper>
     <ClientOnly>
-      <div :class="['fixed', 'bg-background', 'right-2']">
+      <div :class="['fixed', 'bg-background', 'right-2', 'rounded-full']">
         <div :class="['bg-primary/10', 'rounded-full', 'p-1', 'flex', 'gap-1']">
           <div
             :class="['w-1', 'h-1', 'rounded-full', isSupported ? 'bg-active' : 'bg-error']"
@@ -14,7 +14,14 @@
     </ClientOnly>
     <img
       v-if="coverImage"
-      :class="['h-52', 'xl:h-72', 'object-cover', 'w-full']"
+      :class="[
+        'h-52',
+        'xl:h-72',
+        'object-cover',
+        '-mt-4',
+        'max-w-none',
+        device.isMobileOrTablet ? 'w-[calc(100%+1rem)] -mx-2' : 'w-[calc(100%+3rem)] -mx-6',
+      ]"
       :src="coverImage" />
     <div :class="['w-full', 'md:w-3/4', 'mx-auto']">
       <div
@@ -58,7 +65,7 @@ const authorName = useState('singleRecipeAuthorName', () => '');
 const coverImage = useState('singleRecipeCoverImage', () => undefined);
 const route = useRoute();
 const user = useCurrentUser();
-
+const device = useDevice();
 const db = useFirestore();
 const _database = getFirestore(db.app);
 const { isSupported, isActive, request, release } = useWakeLock();
