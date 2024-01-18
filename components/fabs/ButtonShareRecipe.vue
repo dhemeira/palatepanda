@@ -24,8 +24,6 @@ function share() {
   if (navigator.share) {
     navigator
       .share({
-        title: title.value as string,
-        text: 'Nézd meg ezt a receptet:',
         url: route.fullPath,
       })
       .then(() => console.log('Successful share'))
