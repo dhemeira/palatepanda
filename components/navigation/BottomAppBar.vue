@@ -4,8 +4,7 @@
       <img
         v-if="user"
         :class="['aspect-square rounded-full ml-1 w-8 h-8']"
-        :src="avatarURL"
-        alt="" />
+        :src="avatarURL" />
       <NuxtLink
         v-else
         class="rounded-full h-10 w-10 flex items-center justify-center"
@@ -40,8 +39,8 @@
             ]"></div>
         </div>
       </div>
-      <LazyFabsButtonEditRecipe
-        v-if="isRecipeView && route.params.author == user?.uid"
+      <LazyFabsButtonShareRecipe
+        v-if="isRecipeView"
         :class="[
           'transition-all duration-300',
           isFabHidden ? 'opacity-0 pointer-events-none' : 'delay-700',
@@ -63,8 +62,6 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiAccount, mdiMenu } from '@mdi/js';
 
 const user = useCurrentUser();
-/** Route object */
-const route = useRoute();
 /** Controls sidebar visibility on small screens  */
 const showSidebar = useState('showSidebar');
 
@@ -86,10 +83,7 @@ const isRecipeView = computed(() => {
 
 /** Checks wheter the FAB is hidden */
 const isFabHidden = computed(() => {
-  return (
-    (!(isRecipeView.value && route.params.author == user.value?.uid) && !isRecipesView.value) ||
-    props.hideFab
-  );
+  return (!isRecipeView.value && !isRecipesView.value) || props.hideFab;
 });
 
 /** The URL of the image used as the avatar of the current user */

@@ -1,8 +1,8 @@
 <template>
   <div class="bottom-app-bar fixed bottom-0 flex z-50 w-screen h-11 px-3 pointer-events-none">
     <span class="pointer-events-auto">
-      <FabsButtonEditRecipe
-        v-if="isRecipeView && route.params.author == user?.uid"
+      <FabsButtonShareRecipe
+        v-if="isRecipeView"
         :right="right" />
       <FabsButtonToTop
         v-else-if="isRecipesView"
@@ -15,9 +15,6 @@ const props = defineProps<{
   right: boolean;
   button: any;
 }>();
-/** Route object */
-const route = useRoute();
-const user = useCurrentUser();
 
 /** Checks wheter the current view is the Recipes view */
 const isRecipesView = computed(() => {

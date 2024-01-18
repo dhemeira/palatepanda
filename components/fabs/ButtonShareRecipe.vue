@@ -1,6 +1,6 @@
 <template>
-  <NuxtLink
-    :to="`/receptek/${route.params.author}/${route.params?.id}/szerkesztes`"
+  <button
+    @click="share"
     tabindex="-1"
     :class="[
       'flex items-center shadow-xl justify-center absolute -top-14 w-14 translate-x-1/2 translate-y-1/2 transition-all duration-500 ease-out bg-secondary-container rounded-full aspect-square',
@@ -9,16 +9,28 @@
     v-show="true">
     <svg-icon
       type="mdi"
-      :path="mdiPencil"></svg-icon>
-  </NuxtLink>
+      :path="mdiShareVariant"></svg-icon>
+  </button>
 </template>
 <script setup lang="ts">
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiPencil } from '@mdi/js';
+import { mdiShareVariant } from '@mdi/js';
 
 defineProps<{
   right: boolean;
 }>();
+const title = useState('recipeTitle');
+function share() {
+  if (navigator.share) {
+    navigator
+      .share({
+        title: title.value as string,
+        url: route.fullPath,
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+  }
+}
 
 /** Route object */
 const route = useRoute();

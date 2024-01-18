@@ -24,8 +24,7 @@
             'min-w-[24px] min-h-[24px] max-w-[40px] max-h-[40px] aspect-square rounded-full transition-all',
             device.isMobileOrTablet ? 'w-10 h-10' : 'w-6 h-6 group-hover:w-10 group-hover:h-10',
           ]"
-          :src="avatarURL"
-          alt="" />
+          :src="avatarURL" />
         {{ user?.displayName }}
       </div>
       <NuxtLink
