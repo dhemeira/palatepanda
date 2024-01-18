@@ -68,9 +68,6 @@ import settings from '@/appsettings.json';
 import { marked } from 'marked';
 import { doc, getDoc, getFirestore } from 'firebase/firestore/lite';
 
-import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiPencil } from '@mdi/js';
-
 const data = useState('singleRecipeData', () => '');
 const authorName = useState('singleRecipeAuthorName', () => '');
 const coverImage = useState('singleRecipeCoverImage', () => undefined);
