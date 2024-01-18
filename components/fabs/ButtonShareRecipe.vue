@@ -24,6 +24,7 @@ function share() {
   if (navigator.share) {
     navigator
       .share({
+        title: title.value as string,
         url: route.fullPath,
       })
       .then(() => console.log('Successful share'))
