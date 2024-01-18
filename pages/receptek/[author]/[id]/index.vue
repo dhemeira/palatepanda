@@ -29,13 +29,21 @@
         class="recipe"
         v-if="data"
         v-html="markdownToHtml()"></div>
-      <div class="mt-4 flex justify-end">
+      <div class="mt-4 flex justify-end flex-wrap">
+        <NuxtLink
+          v-if="route.params.author == user?.uid"
+          class="m-4"
+          :to="`/receptek/${route.params.author}/${route.params?.id}/szerkesztes`">
+          <span
+            class="hover:text-black dark:hover:text-white cursor-pointer underline decoration-dotted decoration-2 underline-offset-4 text-black/50 dark:text-white/75">
+            Recept szerkesztése
+          </span>
+        </NuxtLink>
         <div class="flex items-center font-bold gap-2 bg-inverse-primary/10 p-4 w-fit rounded">
           <img
             v-if="authorName"
             :class="['aspect-square rounded-full ml-1 w-8 h-8']"
-            :src="avatarURL"
-            alt="" />
+            :src="avatarURL" />
           {{ authorName ?? 'Nincs szerző' }}
         </div>
       </div>
@@ -59,6 +67,9 @@
 import settings from '@/appsettings.json';
 import { marked } from 'marked';
 import { doc, getDoc, getFirestore } from 'firebase/firestore/lite';
+
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiPencil } from '@mdi/js';
 
 const data = useState('singleRecipeData', () => '');
 const authorName = useState('singleRecipeAuthorName', () => '');
@@ -115,6 +126,7 @@ async function readFromDb(author: string, id: string) {
     data.value = _docSnap.data()?.md;
     authorName.value = _docSnap.data()?.name;
     coverImage.value = _docSnap.data()?.coverImage;
+    title.value = _docSnap.data()?.title;
   } else {
     showError({
       statusCode: 404,
@@ -146,7 +158,7 @@ const avatarURL = computed(() => {
   return `https://source.boringavatars.com/marble/64/${_formattedName}`;
 });
 
-const title = ref('Recept');
+const title = useState('recipeTitle', () => 'Recept');
 const description = ref('Recept megtekintése. Lakics Péter weboldala.');
 useSeoMeta({
   title: `${title.value} | ${settings.APP_NAME}`,

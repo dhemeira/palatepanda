@@ -96,8 +96,7 @@
               <div class="flex items-center gap-1 justify-end">
                 <img
                   :class="['aspect-square rounded-full ml-1 w-5 h-5']"
-                  :src="avatarURL(user?.displayName as string)"
-                  alt="" />
+                  :src="avatarURL(user?.displayName as string)" />
                 <div class="text-xs italic">{{ user?.displayName }}</div>
               </div>
             </div>

@@ -96,8 +96,7 @@
               <div class="flex items-center gap-1 justify-end">
                 <img
                   :class="['aspect-square rounded-full ml-1 w-5 h-5']"
-                  :src="avatarURL(recipe.authorName)"
-                  alt="" />
+                  :src="avatarURL(recipe.authorName)" />
                 <div class="text-xs italic">{{ recipe.authorName }}</div>
               </div>
             </div>
