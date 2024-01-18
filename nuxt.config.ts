@@ -20,6 +20,14 @@ export default defineNuxtConfig({
       lang: 'hu',
       shortcuts: [
         {
+          name: 'Receptek',
+          url: '/receptek',
+        },
+        {
+          name: 'Saját Receptek',
+          url: '/receptek/sajat',
+        },
+        {
           name: 'Profil',
           url: '/profil',
         },

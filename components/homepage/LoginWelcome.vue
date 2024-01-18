@@ -60,13 +60,13 @@
       <DefaultButton
         :icon="mdiNotebook"
         to="/receptek">
-        Receptek megtekintése
+        Receptek
       </DefaultButton>
       <DefaultButton
         to="/profil"
         :outlined="true"
         color="primary">
-        Profil megtekintése
+        Profil
       </DefaultButton>
       <DefaultButton
         :outlined="true"
