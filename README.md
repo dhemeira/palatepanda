@@ -2,7 +2,16 @@
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
 
+Frontend: [Vercel](https://vercel.app/)
+
 Backend: [Firebase](https://firebase.google.com/)
+
+# Table of contents
+
+- [Recommended IDE Setup](#recommended-ide-setup)
+- [Setup](#setup)
+- [Development Server](#development-server)
+- [Contributing](#table-of-contents)
 
 ## Recommended IDE Setup
 
@@ -15,14 +24,7 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 Make sure to install the dependencies:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
 ```
 
 ## Development Server
@@ -30,42 +32,25 @@ yarn install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
 ```
 
-## Production
-
-Build the application for production:
+Host development server locally:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
+npm run dev -- --host
 ```
 
-Locally preview production build:
+## Contributing
+
+Run checks, format files and commit with commitizen:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
+npm run commit
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Run checks, format files and push to github:
+
+```bash
+npm run push
+```
