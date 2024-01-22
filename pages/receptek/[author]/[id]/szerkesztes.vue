@@ -217,7 +217,7 @@ async function readFromDb(id: string) {
     originalMd.value += _docSnap.data()?.md;
     text.value = originalMd.value;
     title.value = `${_docSnap.data()?.title} szerkesztése`;
-    image.value = _docSnap.data()?.coverImage;
+    image.value = _docSnap.data()?.coverImage ?? `${settings.APP_URL}/logo.png`;
     updatePreview();
   } else {
     showError({

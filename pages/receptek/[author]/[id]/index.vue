@@ -124,7 +124,7 @@ async function readFromDb(author: string, id: string) {
     authorName.value = _docSnap.data()?.name;
     coverImage.value = _docSnap.data()?.coverImage;
     title.value = _docSnap.data()?.title;
-    image.value = _docSnap.data()?.coverImage;
+    image.value = _docSnap.data()?.coverImage ?? `${settings.APP_URL}/logo.png`;
   } else {
     showError({
       statusCode: 404,
