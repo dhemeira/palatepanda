@@ -216,6 +216,8 @@ async function readFromDb(id: string) {
     originalMd.value = `cImage|${_docSnap.data()?.coverImage}\n`;
     originalMd.value += _docSnap.data()?.md;
     text.value = originalMd.value;
+    title.value = `${_docSnap.data()?.title} szerkesztése`;
+    image.value = _docSnap.data()?.coverImage;
     updatePreview();
   } else {
     showError({
@@ -231,12 +233,13 @@ definePageMeta({
 
 const title = ref('Szerkesztés');
 const description = ref('Recept szerkesztése. Lakics Péter weboldala.');
+const image = ref(`${settings.APP_URL}/logo.png`);
 useSeoMeta({
-  title: `${title.value} | ${settings.APP_NAME}`,
-  ogTitle: `${title.value} | ${settings.APP_NAME}`,
+  title: () => `${title.value}`,
+  ogTitle: () => `${title.value} | ${settings.APP_NAME}`,
   description: `${description.value}`,
   ogDescription: `${description.value}`,
-  ogImage: `${settings.APP_URL}/logo.png`,
+  ogImage: image,
   robots: 'noindex, nofollow',
 });
 </script>

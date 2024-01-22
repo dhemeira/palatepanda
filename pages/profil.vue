@@ -44,7 +44,7 @@
 
       <DefaultButton
         class="w-full"
-        :loading="loading"
+        :loading="loadingUsername"
         type="submit">
         Felhasználónév megváltoztatása
       </DefaultButton>
@@ -60,18 +60,18 @@
       <FormInput
         :icon="mdiLock"
         v-model="password"
-        :type="showpw ? 'text' : 'password'"
+        :type="showPassword ? 'text' : 'password'"
         autocomplete="off"
         name="password"
         id="password"
         placeholder="Új jelszó"
         :showToggle="true"
-        :show="showpw"
-        @toggle="showpw = !showpw" />
+        :show="showPassword"
+        @toggle="showPassword = !showPassword" />
 
       <DefaultButton
         class="w-full"
-        :loading="loadingpw"
+        :loading="loadingPassword"
         type="submit">
         Új jelszó mentése
       </DefaultButton>
@@ -89,34 +89,34 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiEmail, mdiAccount, mdiLock } from '@mdi/js';
 import settings from '@/appsettings.json';
 
-/** The username written in the text field */
-const username = useState('newUsername', () => '');
-/** The password written in the text field */
-const password = useState('newPassword', () => '');
-/** Is the button in a loading state */
-const loading = useState('usernameLoading', () => false);
-/** Is the button in a loading state */
-const loadingpw = useState('passwordLoading', () => false);
-/** Alert object */
 const { showAlert, alertType, alertMessage, openAlert } = useAlert();
-
-/** Controls wheter to show or hide the characters in the password field */
-const showpw = useState('showNewPassword', () => false);
-
 const device = useDevice();
-
 const auth = useAuth();
 const user = useCurrentUser();
 
+const loadingUsername = useState('usernameLoading', () => false);
+const loadingPassword = useState('passwordLoading', () => false);
+const username = useState('newUsername', () => '');
+const password = useState('newPassword', () => '');
+const showPassword = useState('showNewPassword', () => false);
+
 const title = 'Profil';
 const description = 'Profil. Lakics Péter weboldala.';
+
+onUnmounted(() => {
+  loadingUsername.value = false;
+  loadingPassword.value = false;
+  username.value = '';
+  password.value = '';
+  showPassword.value = false;
+});
 
 definePageMeta({
   middleware: ['auth'],
 });
 
 useServerSeoMeta({
-  title: `${title} | ${settings.APP_NAME}`,
+  title: `${title}`,
   ogTitle: `${title} | ${settings.APP_NAME}`,
   description: description,
   ogDescription: description,
@@ -141,13 +141,14 @@ async function changeUsername() {
     return;
   }
 
-  loading.value = true;
+  loadingUsername.value = true;
   var _result = await auth.changeName(username.value);
+
   if (_result) openAlert(errorHandler({ code: _result }));
   else openAlert(successHandler({ code: 'name-changed' }), 'success');
-  username.value = '';
 
-  loading.value = false;
+  username.value = '';
+  loadingUsername.value = false;
 }
 
 async function changePassword() {
@@ -160,12 +161,12 @@ async function changePassword() {
     return;
   }
 
-  loadingpw.value = true;
-  var _result = await auth.changePw(password.value);
+  loadingPassword.value = true;
+  var _result = await auth.changePassword(password.value);
   if (_result) openAlert(errorHandler({ code: _result }));
   else openAlert(successHandler({ code: 'password-changed' }), 'success');
   password.value = '';
 
-  loadingpw.value = false;
+  loadingPassword.value = false;
 }
 </script>

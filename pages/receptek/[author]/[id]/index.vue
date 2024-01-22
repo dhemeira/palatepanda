@@ -124,6 +124,7 @@ async function readFromDb(author: string, id: string) {
     authorName.value = _docSnap.data()?.name;
     coverImage.value = _docSnap.data()?.coverImage;
     title.value = _docSnap.data()?.title;
+    image.value = _docSnap.data()?.coverImage;
   } else {
     showError({
       statusCode: 404,
@@ -157,12 +158,13 @@ const avatarURL = computed(() => {
 
 const title = useState('recipeTitle', () => 'Recept');
 const description = ref('Recept megtekintése. Lakics Péter weboldala.');
+const image = ref(`${settings.APP_URL}/logo.png`);
 useSeoMeta({
-  title: `${title.value} | ${settings.APP_NAME}`,
-  ogTitle: `${title.value} | ${settings.APP_NAME}`,
+  title: () => `${title.value}`,
+  ogTitle: () => `${title.value} | ${settings.APP_NAME}`,
   description: `${description.value}`,
   ogDescription: `${description.value}`,
-  ogImage: `${settings.APP_URL}/logo.png`,
+  ogImage: image,
   robots: 'noindex, nofollow',
 });
 </script>

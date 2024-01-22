@@ -43,18 +43,29 @@ const handleError = () => clearError({ redirect: '/' });
 
 /** Theme of the site, either 'dark' or 'light' */
 const theme = useState('theme', () => 'dark');
-// we don't need this watcher on server
+
 onMounted(() => {
   const _themeQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const _theme = cookieValue('theme');
+
   if (_theme) theme.value = _theme;
   else theme.value = _themeQuery.matches ? 'dark' : 'light';
+
   document.documentElement.style.colorScheme = theme.value;
 });
 
 const description = `Ez az oldal nem található. Lakics Péter weboldala.`;
-useSeoMeta({
-  title: `404 | ${settings.APP_NAME}`,
+useHead({
+  titleTemplate: (title) => `${title} | ${settings.APP_NAME}`,
+  htmlAttrs: { lang: 'hu' },
+  link: [
+    { rel: 'icon', href: `${settings.APP_URL}/favicon.ico` },
+    { rel: 'mask-icon', href: `${settings.APP_URL}/mask-icon.svg`, color: '#FFFFFF' },
+    { rel: 'apple-touch-icon', href: `${settings.APP_URL}/apple-touch-icon.png`, sizes: '180x180' },
+  ],
+});
+useServerSeoMeta({
+  title: `404`,
   ogTitle: `404 | ${settings.APP_NAME}`,
   description: description,
   ogDescription: description,

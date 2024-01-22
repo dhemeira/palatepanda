@@ -32,6 +32,14 @@ declare let SvgIcon: import('vue').DefineComponent<{
   };
 }>;
 
+interface Recipe {
+  id: string;
+  title: string;
+  coverImage?: string;
+  author: string;
+  authorName: string;
+}
+
 declare module '@jamescoyle/vue-icon' {
   export default SvgIcon;
 }

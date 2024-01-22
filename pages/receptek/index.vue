@@ -115,11 +115,7 @@ const device = useDevice();
 const recipe = useRecipe();
 
 /** Array of recipes read from database */
-const recipes = useState(
-  'allRecipes',
-  () =>
-    [] as { id: string; title: string; coverImage?: string; author: string; authorName: string }[]
-);
+const recipes = useState('allRecipes', () => [] as Recipe[]);
 /** The search query */
 const query = useState('searchQuery', () => '');
 
@@ -163,7 +159,7 @@ function avatarURL(authorName: string) {
 const title = 'Receptek';
 const description = 'Receptek megtekintése. Lakics Péter weboldala.';
 useServerSeoMeta({
-  title: `${title} | ${settings.APP_NAME}`,
+  title: `${title}`,
   ogTitle: `${title} | ${settings.APP_NAME}`,
   description: description,
   ogDescription: description,

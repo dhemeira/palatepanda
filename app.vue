@@ -19,6 +19,7 @@ const theme = useState('theme', () => 'dark');
 const showSidebar = useState('showSidebar', () => false);
 const alert = useAlert();
 useHead({
+  titleTemplate: (title) => `${title} | ${settings.APP_NAME}`,
   htmlAttrs: { lang: 'hu' },
   link: [
     { rel: 'icon', href: `${settings.APP_URL}/favicon.ico` },
