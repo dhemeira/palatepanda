@@ -96,8 +96,8 @@
               <div class="flex items-center gap-1 justify-end">
                 <img
                   :class="['aspect-square rounded-full ml-1 w-5 h-5']"
-                  :src="avatarURL(user?.displayName as string)" />
-                <div class="text-xs italic">{{ user?.displayName }}</div>
+                  :src="avatarURL(recipe.authorName)" />
+                <div class="text-xs italic">{{ recipe.authorName }}</div>
               </div>
             </div>
           </div>
@@ -119,10 +119,7 @@ const user = useCurrentUser();
 const recipe = useRecipe();
 const device = useDevice();
 /** Array of recipes read from database */
-const recipes = useState(
-  'userRecipes',
-  () => [] as { id: string; title: string; coverImage?: string; author: string }[]
-);
+const recipes = useState('userRecipes', () => [] as Recipe[]);
 /** The search query */
 const query = useState('searchQuery', () => '');
 

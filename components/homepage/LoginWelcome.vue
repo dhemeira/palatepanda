@@ -12,10 +12,12 @@
       <h1 class="text-3xl font-bold">Belépve, mint:</h1>
     </span>
     <div class="bg-primary/5 text-on-surface mb-3 p-4 rounded drop-shadow-sm overflow-x-hidden">
-      <div
-        v-if="waitingForCount"
-        class="h-1 rounded-full bottom-0 bg-gray-800 absolute"
-        style="animation: progressBar 1.5s ease-in-out infinite"></div>
+      <Transition>
+        <div
+          v-if="waitingForCount"
+          class="h-1 rounded-full bottom-0 bg-gray-800 absolute"
+          style="animation: progressBar 1.5s ease-in-out infinite"></div>
+      </Transition>
 
       <span
         style="gap: 0.5rem"
@@ -105,25 +107,13 @@ onMounted(() => {
   );
 });
 
-/** Reads the count of recipes from the database */
 async function readFromDb() {
-  const _startTime = new Date().getMilliseconds();
-  const _count = await recipe.getRecipesCount();
-  const _stopTime = new Date().getMilliseconds();
-  const _timeDelta = Math.abs(_stopTime - _startTime);
+  const _count = await recipe.getUserRecipesCount();
 
-  if (_timeDelta > 100) {
-    setTimeout(
-      () => {
-        countRecipes.value = _count;
-        waitingForCount.value = false;
-      },
-      Math.max(1000 - _timeDelta, 0)
-    );
-  } else {
+  setTimeout(() => {
     countRecipes.value = _count;
     waitingForCount.value = false;
-  }
+  }, 750);
 }
 </script>
 
@@ -142,5 +132,15 @@ async function readFromDb() {
     left: 100%;
     @apply bg-primary/50;
   }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

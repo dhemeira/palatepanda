@@ -43,12 +43,14 @@ const handleError = () => clearError({ redirect: '/' });
 
 /** Theme of the site, either 'dark' or 'light' */
 const theme = useState('theme', () => 'dark');
-// we don't need this watcher on server
+
 onMounted(() => {
   const _themeQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const _theme = cookieValue('theme');
+
   if (_theme) theme.value = _theme;
   else theme.value = _themeQuery.matches ? 'dark' : 'light';
+
   document.documentElement.style.colorScheme = theme.value;
 });
 
