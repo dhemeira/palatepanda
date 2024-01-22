@@ -64,9 +64,9 @@ useHead({
     { rel: 'apple-touch-icon', href: `${settings.APP_URL}/apple-touch-icon.png`, sizes: '180x180' },
   ],
 });
-useServerSeoMeta({
-  title: `404`,
-  ogTitle: `404 | ${settings.APP_NAME}`,
+useSeoMeta({
+  title: () => `404`,
+  ogTitle: () => `404 | ${settings.APP_NAME}`,
   description: description,
   ogDescription: description,
   ogImage: `${settings.APP_URL}/logo.png`,

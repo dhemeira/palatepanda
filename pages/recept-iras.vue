@@ -172,9 +172,9 @@ definePageMeta({
   middleware: ['auth'],
 });
 
-useServerSeoMeta({
-  title: `${title}`,
-  ogTitle: `${title} | ${settings.APP_NAME}`,
+useSeoMeta({
+  title: () => `${title}`,
+  ogTitle: () => `${title} | ${settings.APP_NAME}`,
   description: description,
   ogDescription: description,
   ogImage: `${settings.APP_URL}/logo.png`,
