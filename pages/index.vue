@@ -21,7 +21,7 @@ const title = 'Kezdőlap';
 const description = 'Lakics Péter weboldala.';
 
 useServerSeoMeta({
-  title: `${title} | ${settings.APP_NAME}`,
+  title: `${title}`,
   ogTitle: `${title} | ${settings.APP_NAME}`,
   description: description,
   ogDescription: description,
