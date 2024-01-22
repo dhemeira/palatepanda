@@ -64,7 +64,7 @@ useHead({
     { rel: 'apple-touch-icon', href: `${settings.APP_URL}/apple-touch-icon.png`, sizes: '180x180' },
   ],
 });
-
+const route = useRoute();
 useSeoMeta({
   title: `404`,
   ogTitle: `404 | ${settings.APP_NAME}`,
@@ -72,5 +72,14 @@ useSeoMeta({
   ogDescription: description,
   ogImage: `${settings.APP_URL}/logo.png`,
   robots: 'index, follow',
+});
+useServerSeoMeta({
+  ogSiteName: settings.APP_NAME,
+  ogType: 'website',
+  ogLocale: 'hu_HU',
+  applicationName: settings.APP_NAME,
+  author: 'Lakics Péter',
+  themeColor: '#121212',
+  ogUrl: `${settings.APP_URL}${route.path}`,
 });
 </script>
