@@ -158,6 +158,7 @@ function avatarURL(authorName: string) {
 
 const title = 'Receptek';
 const description = 'Receptek megtekintése. Lakics Péter weboldala.';
+
 useSeoMeta({
   title: () => `${title}`,
   ogTitle: () => `${title} | ${settings.APP_NAME}`,
