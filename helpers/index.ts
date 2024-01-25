@@ -24,6 +24,7 @@ export function errorHandler(error: { [index: string]: string }): string {
   switch (error.code) {
     case 'auth/wrong-password':
     case 'auth/user-not-found':
+    case 'auth/invalid-credential':
       return `Hibás email cím vagy jelszó.`;
     case 'auth-empty':
       return 'Email cím vagy jelszó nincs kitöltve.';

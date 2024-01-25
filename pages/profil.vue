@@ -1,5 +1,10 @@
 <template>
   <ViewWrapper :class="device.isMobileOrTablet ? 'w-full' : 'w-3/4 mx-auto'">
+    <AlertToast
+      :class="['fixed', 'z-40', 'right-4', 'top-4', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"
+      v-model="showAlert"
+      :msg="alertMessage"
+      :type="alertType" />
     <h1 :class="['mt-2 mb-6', 'text-3xl', 'font-bold']">Profil</h1>
     <div
       :class="['flex', 'flex-col', 'mb-4']"
@@ -49,6 +54,7 @@
         Felhasználónév megváltoztatása
       </DefaultButton>
     </form>
+
     <div class="relative flex py-8 items-center">
       <div class="flex-grow border-t border-gray-400"></div>
       <span class="flex-shrink mx-4 text-gray-400 font-bold">VAGY</span>
@@ -76,11 +82,6 @@
         Új jelszó mentése
       </DefaultButton>
     </form>
-    <AlertInline
-      class="mt-3"
-      v-model="showAlert"
-      :msg="alertMessage"
-      :type="alertType" />
   </ViewWrapper>
 </template>
 <script setup lang="ts">
@@ -90,6 +91,7 @@ import { mdiEmail, mdiAccount, mdiLock } from '@mdi/js';
 import settings from '@/appsettings.json';
 
 const { showAlert, alertType, alertMessage, openAlert } = useAlert();
+
 const device = useDevice();
 const auth = useAuth();
 const user = useCurrentUser();

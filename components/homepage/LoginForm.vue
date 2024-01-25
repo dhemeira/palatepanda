@@ -2,6 +2,11 @@
   <div
     :class="[device.isMobileOrTablet ? 'mx-auto' : '']"
     style="max-width: 600px; height: 450px">
+    <AlertToast
+      :class="['fixed', 'z-40', 'right-4', 'top-4', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"
+      v-model="showAlert"
+      :msg="alertMessage"
+      :type="alertType" />
     <span class="flex justify-center items-center mb-6">
       <img
         class="rounded-lg mr-2"
@@ -68,11 +73,6 @@
         {{ forgottenPw ? 'Bejelentkezés' : 'Elfelejtett jelszó' }}
       </span>
     </div>
-    <AlertInline
-      class="mt-3"
-      v-model="showAlert"
-      :msg="alertMessage"
-      :type="alertType" />
   </div>
 </template>
 <script setup lang="ts">
@@ -81,21 +81,21 @@ import { errorHandler, successHandler } from '@/helpers/index';
 import { mdiEmail, mdiLock } from '@mdi/js';
 
 /** Controls wheter to show or hide the characters in the password field */
-const showpw = useState('showPassword', () => false);
+const showpw = ref(false);
 /** The email address used to login */
-const email = useState('loginEmail', () => '');
+const email = ref('');
 /** The email address used to reset password */
-const emailReset = useState('resetEmail', () => '');
+const emailReset = ref('');
 /** The password used to login */
-const pw = useState('loginPassword', () => '');
+const pw = ref('');
 /** Controls the loading state of the login button */
-const loading = useState('loginLoading', () => false);
+const loading = ref(false);
 /** Alert object */
 const { showAlert, alertType, alertMessage, openAlert } = useAlert();
 /** Auth object */
 const auth = useAuth();
 
-const forgottenPw = useState('forgottenPassword', () => false);
+const forgottenPw = ref(false);
 
 const device = useDevice();
 
@@ -103,6 +103,7 @@ const device = useDevice();
  * Logs in the user or show error if unsuccesful
  */
 async function loginUser() {
+  showAlert.value = false;
   if (!email.value || !pw.value) {
     openAlert(errorHandler({ code: 'auth-empty' }));
     return;
@@ -110,11 +111,10 @@ async function loginUser() {
   loading.value = true;
   let _res = await auth.login(email.value.trim().toLowerCase(), pw.value);
   if (_res) openAlert(errorHandler({ code: _res }));
-  if (!_res) {
+  else {
     email.value = '';
     pw.value = '';
   }
-
   loading.value = false;
 }
 async function resetPw() {

@@ -40,6 +40,8 @@ interface Recipe {
   authorName: string;
 }
 
+type AlertType = 'success' | 'refresh' | 'refresh' | 'info' | undefined;
+
 declare module '@jamescoyle/vue-icon' {
   export default SvgIcon;
 }

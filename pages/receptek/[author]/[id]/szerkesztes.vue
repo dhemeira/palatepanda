@@ -1,7 +1,7 @@
 <template>
   <ViewWrapper>
-    <AlertInline
-      :class="['fixed', 'z-40', 'right-4']"
+    <AlertToast
+      :class="['fixed', 'z-40', 'right-4', 'top-4', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"
       v-model="showAlert"
       :msg="alertMessage"
       :type="alertType" />

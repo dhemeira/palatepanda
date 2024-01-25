@@ -1,7 +1,7 @@
 <template>
   <ViewWrapper>
-    <AlertInline
-      :class="['fixed', 'z-40', 'right-4']"
+    <AlertToast
+      :class="['fixed', 'z-40', 'right-4', 'top-4', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"
       v-model="showAlert"
       :msg="alertMessage"
       :type="alertType" />
@@ -51,7 +51,7 @@ import settings from '@/appsettings.json';
 import { marked } from 'marked';
 import { addDoc, collection, getFirestore } from 'firebase/firestore/lite';
 import { errorHandler } from '@/helpers/index';
-
+const device = useDevice();
 /** The content of the text field */
 const text = useState('text', () => '');
 /** The markdown sanitized */
