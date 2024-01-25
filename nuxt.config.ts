@@ -9,6 +9,11 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
   ],
   ssr: true,
+  nitro: {
+    prerender: {
+      routes: ['/'],
+    },
+  },
   pwa: {
     includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
     manifest: {
