@@ -15,6 +15,47 @@ export default defineNuxtConfig({
       name: 'Lakics Péter',
       short_name: 'Lakics Péter',
       description: 'Lakics Péter személyes weboldala.',
+      screenshots: [
+        {
+          src: 'wide_login.png',
+          sizes: '1920x1032',
+          type: 'image/png',
+          form_factor: 'wide',
+          label: 'Login screen',
+        },
+        {
+          src: 'wide_recipes.png',
+          sizes: '1920x1032',
+          type: 'image/png',
+          form_factor: 'wide',
+          label: 'Recipe list',
+        },
+        {
+          src: 'wide_recipe.png',
+          sizes: '1920x1032',
+          type: 'image/png',
+          form_factor: 'wide',
+          label: 'Recipe',
+        },
+        {
+          src: 'narrow_login.png',
+          sizes: '1080x2400',
+          type: 'image/jpeg',
+          label: 'Login screen',
+        },
+        {
+          src: 'narrow_recipes.png',
+          sizes: '1080x2400',
+          type: 'image/jpeg',
+          label: 'Recipe list',
+        },
+        {
+          src: 'narrow_recipe.png',
+          sizes: '1080x2400',
+          type: 'image/jpeg',
+          label: 'Recipe',
+        },
+      ],
       theme_color: '#121212',
       background_color: '#121212',
       lang: 'hu',
@@ -22,22 +63,35 @@ export default defineNuxtConfig({
         {
           name: 'Receptek',
           url: '/receptek',
+          icons: [
+            {
+              src: 'android-chrome-96x96.png',
+              sizes: '96x96',
+            },
+          ],
         },
         {
           name: 'Saját Receptek',
           url: '/receptek/sajat',
+          icons: [
+            {
+              src: 'android-chrome-96x96.png',
+              sizes: '96x96',
+            },
+          ],
         },
         {
           name: 'Profil',
           url: '/profil',
+          icons: [
+            {
+              src: 'android-chrome-96x96.png',
+              sizes: '96x96',
+            },
+          ],
         },
       ],
       icons: [
-        {
-          src: 'android-chrome-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-        },
         {
           src: 'android-chrome-512x512.png',
           sizes: '512x512',

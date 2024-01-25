@@ -49,6 +49,11 @@
         Felhasználónév megváltoztatása
       </DefaultButton>
     </form>
+    <AlertInline
+      class="mt-3"
+      v-model="showUsernameAlert"
+      :msg="alertUsernameMessage"
+      :type="alertUsernameType" />
     <div class="relative flex py-8 items-center">
       <div class="flex-grow border-t border-gray-400"></div>
       <span class="flex-shrink mx-4 text-gray-400 font-bold">VAGY</span>
@@ -78,9 +83,9 @@
     </form>
     <AlertInline
       class="mt-3"
-      v-model="showAlert"
-      :msg="alertMessage"
-      :type="alertType" />
+      v-model="showPasswordAlert"
+      :msg="alertPasswordMessage"
+      :type="alertPassswordType" />
   </ViewWrapper>
 </template>
 <script setup lang="ts">
@@ -89,7 +94,18 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiEmail, mdiAccount, mdiLock } from '@mdi/js';
 import settings from '@/appsettings.json';
 
-const { showAlert, alertType, alertMessage, openAlert } = useAlert();
+const {
+  showAlert: showUsernameAlert,
+  alertType: alertUsernameType,
+  alertMessage: alertUsernameMessage,
+  openAlert: openUsernameAlert,
+} = useAlert();
+const {
+  showAlert: showPasswordAlert,
+  alertType: alertPassswordType,
+  alertMessage: alertPasswordMessage,
+  openAlert: openPasswordAlert,
+} = useAlert();
 const device = useDevice();
 const auth = useAuth();
 const user = useCurrentUser();
@@ -129,23 +145,23 @@ useSeoMeta({
  */
 async function changeUsername() {
   if (username.value == '') {
-    openAlert(errorHandler({ code: 'displayname-empty' }));
+    openUsernameAlert(errorHandler({ code: 'displayname-empty' }));
     return;
   }
   if (username.value.length < 5) {
-    openAlert(errorHandler({ code: 'displayname-short' }));
+    openUsernameAlert(errorHandler({ code: 'displayname-short' }));
     return;
   }
   if (username.value.length > 40) {
-    openAlert(errorHandler({ code: 'displayname-long' }));
+    openUsernameAlert(errorHandler({ code: 'displayname-long' }));
     return;
   }
 
   loadingUsername.value = true;
   var _result = await auth.changeName(username.value);
 
-  if (_result) openAlert(errorHandler({ code: _result }));
-  else openAlert(successHandler({ code: 'name-changed' }), 'success');
+  if (_result) openUsernameAlert(errorHandler({ code: _result }));
+  else openUsernameAlert(successHandler({ code: 'name-changed' }), 'success');
 
   username.value = '';
   loadingUsername.value = false;
@@ -153,18 +169,18 @@ async function changeUsername() {
 
 async function changePassword() {
   if (password.value == '') {
-    openAlert(errorHandler({ code: 'password-empty' }));
+    openPasswordAlert(errorHandler({ code: 'password-empty' }));
     return;
   }
   if (password.value.length < 6) {
-    openAlert(errorHandler({ code: 'auth/weak-password' }));
+    openPasswordAlert(errorHandler({ code: 'auth/weak-password' }));
     return;
   }
 
   loadingPassword.value = true;
   var _result = await auth.changePassword(password.value);
-  if (_result) openAlert(errorHandler({ code: _result }));
-  else openAlert(successHandler({ code: 'password-changed' }), 'success');
+  if (_result) openPasswordAlert(errorHandler({ code: _result }));
+  else openPasswordAlert(successHandler({ code: 'password-changed' }), 'success');
   password.value = '';
 
   loadingPassword.value = false;

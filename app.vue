@@ -1,6 +1,11 @@
 <template>
   <VitePwaManifest />
   <NuxtLayout>
+    <AlertInline
+      :class="['fixed', 'z-40', 'left-4 md:left-20', 'top-4']"
+      v-model="showAlert"
+      :msg="alertMessage"
+      :type="alertType" />
     <NuxtPage :class="device.isMobileOrTablet ? 'min-h-[calc(100vh-56px)]' : 'min-h-screen'" />
   </NuxtLayout>
 </template>
@@ -14,16 +19,17 @@ const user = useCurrentUser();
 
 /** Theme of the site, either 'dark' or 'light' */
 const theme = useState('theme', () => 'dark');
-
+/** Alert object */
+const { showAlert, alertType, alertMessage, openAlert } = useAlert();
+const { $pwa } = useNuxtApp();
 /** Controls sidebar visibility on small screens  */
 const showSidebar = useState('showSidebar', () => false);
-const alert = useAlert();
+
 useHead({
   titleTemplate: (title) => `${title} | ${settings.APP_NAME}`,
   htmlAttrs: { lang: 'hu' },
   link: [
     { rel: 'icon', href: `${settings.APP_URL}/favicon.ico` },
-    { rel: 'mask-icon', href: `${settings.APP_URL}/mask-icon.svg`, color: '#FFFFFF' },
     { rel: 'apple-touch-icon', href: `${settings.APP_URL}/apple-touch-icon.png`, sizes: '180x180' },
   ],
 });
@@ -36,6 +42,13 @@ useServerSeoMeta({
   themeColor: '#121212',
   ogUrl: `${settings.APP_URL}${route.path}`,
 });
+
+function showUpdatePromt() {
+  setTimeout(() => {
+    openAlert('Új verzió érhető el', 'refresh');
+  }, 1000);
+}
+
 // we don't need this watcher on server
 onMounted(() => {
   const _themeQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -43,6 +56,10 @@ onMounted(() => {
   if (_theme) theme.value = _theme;
   else theme.value = _themeQuery.matches ? 'dark' : 'light';
   document.documentElement.style.colorScheme = theme.value;
+
+  if ($pwa?.needRefresh) {
+    showUpdatePromt();
+  }
 
   /** If in development, prints debug information */
   if (process.dev) {
@@ -63,7 +80,6 @@ onMounted(() => {
     (to) => {
       showSidebar.value = false;
 
-      alert.resetAlert();
       resetFocus(to);
     },
     { immediate: true }

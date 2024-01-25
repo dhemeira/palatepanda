@@ -1,20 +1,17 @@
 export const useAlert = () => {
   /** Controls the visibility of the alert */
-  const showAlert = useState('showAlert', () => false);
-  /** The type of the alert (success, error, warning, info), on undefined the type is error */
-  const alertType = useState<undefined | 'success' | 'error' | 'warning' | 'info'>(
-    'alertType',
-    () => undefined
-  );
+  const showAlert = ref(false);
+  /** The type of the alert (success, error, refresh, info), on undefined the type is error */
+  const alertType = ref<AlertType>(undefined);
   /** The message to show in the alert */
-  const alertMessage = useState('alertMessage', () => '');
+  const alertMessage = ref('');
 
   /**
    * Shows an alert with the given message, styled based on the type
    * @param message The message to show in the alert
-   * @param type The type of the alert (success, error, warning, info), on undefined the type is error
+   * @param type The type of the alert (success, error, refresh, info), on undefined the type is error
    */
-  function openAlert(message: string, type?: 'success' | 'error' | 'warning' | 'info' | undefined) {
+  function openAlert(message: string, type?: AlertType) {
     alertMessage.value = message;
     alertType.value = type;
     showAlert.value = true;
