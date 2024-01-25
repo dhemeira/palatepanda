@@ -15,9 +15,9 @@
       v-if="!isPwa"
       :class="[
         device.isMobileOrTablet ? 'px-2' : 'px-6',
-        'w-full py-8 flex md:items-end flex-col md:flex-row bg-primary/5 gap-8',
+        'w-full py-8 lg:py-16 flex md:items-end flex-col lg:flex-row bg-primary/5 gap-8',
       ]">
-      <div class="w-full md:w-1/2">
+      <div class="w-full lg:w-1/2">
         <h2 class="text-2xl mb-4">Szeretnéd gyorsan megtalálni kedvenc receptjeidet?</h2>
         <p class="my-2">
           Töltsd le az alkalmazást és férj hozzá az összes funkcióhoz közvetlenül a telefonodról,
