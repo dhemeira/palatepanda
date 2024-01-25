@@ -44,7 +44,7 @@
         <LazyDefaultButton
           :small="true"
           v-if="type == 'refresh'"
-          @click="$pwa?.updateServiceWorker()">
+          @click="$pwa?.updateServiceWorker(true)">
           Frissítés
         </LazyDefaultButton>
       </div>

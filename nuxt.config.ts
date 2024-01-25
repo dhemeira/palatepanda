@@ -17,6 +17,13 @@ export default defineNuxtConfig({
       description: 'Lakics Péter személyes weboldala.',
       screenshots: [
         {
+          src: 'wide_recipe.png',
+          sizes: '1920x1032',
+          type: 'image/png',
+          form_factor: 'wide',
+          label: 'Recipe',
+        },
+        {
           src: 'wide_login.png',
           sizes: '1920x1032',
           type: 'image/png',
@@ -31,10 +38,9 @@ export default defineNuxtConfig({
           label: 'Recipe list',
         },
         {
-          src: 'wide_recipe.png',
-          sizes: '1920x1032',
-          type: 'image/png',
-          form_factor: 'wide',
+          src: 'narrow_recipe.jpg',
+          sizes: '1080x2400',
+          type: 'image/jpeg',
           label: 'Recipe',
         },
         {
@@ -48,12 +54,6 @@ export default defineNuxtConfig({
           sizes: '1080x2400',
           type: 'image/jpeg',
           label: 'Recipe list',
-        },
-        {
-          src: 'narrow_recipe.jpg',
-          sizes: '1080x2400',
-          type: 'image/jpeg',
-          label: 'Recipe',
         },
       ],
       theme_color: '#121212',
