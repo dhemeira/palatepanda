@@ -31,7 +31,12 @@
         Letöltés
       </DefaultButton>
     </div>
-    <div :class="[device.isMobileOrTablet ? 'px-2' : 'px-6', 'w-full py-8 bg-primary/5']">
+    <div
+      :class="[
+        device.isMobileOrTablet ? 'px-2' : 'px-6',
+        'w-full py-8',
+        isPwa ? 'bg-primary/5' : 'bg-background',
+      ]">
       <h2 class="text-2xl mb-4">Az oldalról</h2>
       <div class="flex gap-4 flex-col md:flex-row">
         <div class="w-full">

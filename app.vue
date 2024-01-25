@@ -44,9 +44,7 @@ useServerSeoMeta({
 });
 
 function showUpdatePromt() {
-  setTimeout(() => {
-    openAlert('Új verzió érhető el', 'refresh');
-  }, 1000);
+  openAlert('Új verzió érhető el', 'refresh');
 }
 
 // we don't need this watcher on server
@@ -57,9 +55,11 @@ onMounted(() => {
   else theme.value = _themeQuery.matches ? 'dark' : 'light';
   document.documentElement.style.colorScheme = theme.value;
 
-  if ($pwa?.needRefresh) {
-    showUpdatePromt();
-  }
+  setTimeout(() => {
+    if ($pwa?.needRefresh) {
+      showUpdatePromt();
+    }
+  }, 1000);
 
   /** If in development, prints debug information */
   if (process.dev) {
