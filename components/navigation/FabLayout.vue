@@ -1,10 +1,10 @@
 <template>
   <div class="bottom-app-bar fixed bottom-0 flex z-50 w-screen h-11 px-3 pointer-events-none">
     <span class="pointer-events-auto">
-      <FabsButtonShareRecipe
+      <LazyFabsButtonShareRecipe
         v-if="isRecipeView"
         :right="right" />
-      <FabsButtonToTop
+      <LazyFabsButtonToTop
         v-else-if="isRecipesView"
         :right="right" />
     </span>
