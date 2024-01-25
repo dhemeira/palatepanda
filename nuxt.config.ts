@@ -38,19 +38,19 @@ export default defineNuxtConfig({
           label: 'Recipe',
         },
         {
-          src: 'narrow_login.png',
+          src: 'narrow_login.jpg',
           sizes: '1080x2400',
           type: 'image/jpeg',
           label: 'Login screen',
         },
         {
-          src: 'narrow_recipes.png',
+          src: 'narrow_recipes.jpg',
           sizes: '1080x2400',
           type: 'image/jpeg',
           label: 'Recipe list',
         },
         {
-          src: 'narrow_recipe.png',
+          src: 'narrow_recipe.jpg',
           sizes: '1080x2400',
           type: 'image/jpeg',
           label: 'Recipe',
