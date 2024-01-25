@@ -34,7 +34,7 @@
     <div
       :class="[
         device.isMobileOrTablet ? 'px-2' : 'px-6',
-        'w-full py-8',
+        'w-full py-8 md:py-16',
         isPwa ? 'bg-primary/5' : 'bg-background',
       ]">
       <h2 class="text-2xl mb-4">Az oldalról</h2>
