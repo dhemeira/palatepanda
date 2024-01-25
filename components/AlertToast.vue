@@ -2,12 +2,14 @@
   <div
     v-if="modelValue"
     :class="[
-      type == 'success' || type == 'info' || type == 'refresh'
-        ? 'bg-secondary-container'
-        : 'bg-error',
-      'p-4 rounded grid',
+      type == 'success' || type == 'info'
+        ? 'bg-primary-container'
+        : type == 'refresh'
+          ? 'bg-secondary-container'
+          : 'bg-error',
+      'p-4 rounded grid gap-4',
     ]">
-    <div class="grid__prepend mr-4">
+    <div class="grid__prepend">
       <svg-icon
         class="w-7 h-7"
         type="mdi"
@@ -22,7 +24,9 @@
         "></svg-icon>
     </div>
     <div class="grid__content flex flex-col">
-      <span class="flex items-center text-xl font-medium">
+      <span
+        style="word-break: break-word"
+        class="flex items-center text-xl font-medium">
         {{
           type == 'success'
             ? 'Siker'
@@ -33,8 +37,8 @@
                 : 'Hiba'
         }}
       </span>
-      <div class="flex items-center gap-2">
-        <span style="word-break: break-all">
+      <div class="flex flex-col items-end gap-2">
+        <span style="word-break: break-word">
           <span v-html="msg"></span>
         </span>
         <LazyDefaultButton
@@ -86,18 +90,18 @@ const { $pwa } = useNuxtApp();
 <style scoped>
 .grid {
   grid-template-areas:
-    'prepend content append close'
-    '.     content .    .  ';
-  grid-template-columns: max-content auto max-content max-content;
+    'prepend content  close'
+    '.     content    .  ';
+  grid-template-columns: max-content auto max-content;
 }
 
-.grid .grid__prepend {
+.grid__prepend {
   grid-area: prepend;
 }
-.bg-error.grid .grid__content {
+.grid__content {
   grid-area: content;
 }
-.bg-error.grid .grid__pclose {
+.grid__close {
   grid-area: close;
 }
 </style>

@@ -2,6 +2,11 @@
   <div
     :class="[device.isMobileOrTablet ? 'mx-auto' : '']"
     style="max-width: 600px; height: 450px">
+    <AlertToast
+      :class="['fixed', 'z-40', 'right-4', 'top-4', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"
+      v-model="showAlert"
+      :msg="alertMessage"
+      :type="alertType" />
     <span class="flex justify-center items-center mb-6">
       <img
         class="rounded-lg mr-2"
@@ -68,11 +73,6 @@
         {{ forgottenPw ? 'Bejelentkezés' : 'Elfelejtett jelszó' }}
       </span>
     </div>
-    <AlertInline
-      class="mt-3"
-      v-model="showAlert"
-      :msg="alertMessage"
-      :type="alertType" />
   </div>
 </template>
 <script setup lang="ts">

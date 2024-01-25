@@ -1,8 +1,8 @@
 <template>
   <VitePwaManifest />
   <NuxtLayout>
-    <AlertInline
-      :class="['fixed', 'z-40', 'left-4 md:left-20', 'top-4']"
+    <AlertToast
+      :class="['fixed', 'z-40', 'right-4', 'bottom-24', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"
       v-model="showAlert"
       :msg="alertMessage"
       :type="alertType" />
