@@ -1,5 +1,6 @@
 <template>
   <VitePwaManifest />
+  <NuxtLoadingIndicator :color="theme == 'dark' ? '#bac3ff' : '#5c6bc0'" />
   <NuxtLayout>
     <AlertToast
       :class="['fixed', 'z-40', 'right-4', 'bottom-24', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"

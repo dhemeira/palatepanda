@@ -15,7 +15,7 @@
       <Transition>
         <div
           v-if="waitingForCount"
-          class="h-1 rounded-full bottom-0 bg-gray-800 absolute"
+          class="h-1 rounded-full bottom-0 absolute"
           style="animation: progressBar 1.5s ease-in-out infinite"></div>
       </Transition>
 
