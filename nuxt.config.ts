@@ -104,6 +104,7 @@ export default defineNuxtConfig({
           purpose: 'any maskable',
         },
       ],
+      categories: ['food'],
     },
   },
   vuefire: {

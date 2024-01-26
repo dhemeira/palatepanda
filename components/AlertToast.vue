@@ -41,12 +41,12 @@
         <span style="word-break: break-word">
           <span v-html="msg"></span>
         </span>
-        <LazyDefaultButton
+        <DefaultButton
           :small="true"
           v-if="type == 'refresh'"
           @click="$pwa?.updateServiceWorker(true)">
           Frissítés
-        </LazyDefaultButton>
+        </DefaultButton>
       </div>
     </div>
     <div class="grid__close">
