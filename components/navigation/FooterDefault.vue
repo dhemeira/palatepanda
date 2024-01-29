@@ -24,7 +24,7 @@
       class="flex flex-col sm:flex-row justify-center"
       style="gap: 0.35rem">
       <span>© {{ new Date().getFullYear() }}</span>
-      <span class="hidden sm:inline">|</span>
+      <span class="hidden sm:inline">-</span>
       <strong>Lakics Péter</strong>
       <span class="hidden sm:inline">|</span>
       <a

@@ -103,7 +103,7 @@ const password = useState('newPassword', () => '');
 const showPassword = useState('showNewPassword', () => false);
 
 const title = 'Profil';
-const description = 'Profil. Lakics Péter weboldala.';
+const description = 'Szabd személyre a PalatePanda profilodat.';
 
 onUnmounted(() => {
   loadingUsername.value = false;

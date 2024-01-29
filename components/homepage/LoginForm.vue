@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[device.isMobileOrTablet ? 'mx-auto' : '']"
-    style="max-width: 600px; height: 450px">
+    style="max-width: 600px; height: 400px">
     <AlertToast
       :class="['fixed', 'z-40', 'right-4', 'top-4', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"
       v-model="showAlert"

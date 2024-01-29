@@ -1,55 +1,50 @@
-# lakics-peter-nuxt
+# PalatePanda 🐼
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![CodeScene Code Health](https://codescene.io/projects/49178/status-badges/code-health)](https://codescene.io/projects/49178)
 
-Frontend: [Vercel](https://vercel.app/)
+Welcome to PalatePanda, a Nuxt.js project designed to tantalize your taste buds! Our frontend is deployed on [Vercel](https://vercel.app/) and we utilize [Firebase](https://firebase.google.com/) for our backend services.
 
-Backend: [Firebase](https://firebase.google.com/)
+## 📚 Table of Contents
 
-# Table of contents
+- [💻 Recommended IDE Setup](#💻-recommended-ide-setup)
+- [🚀 Setup](#🚀-setup)
+- [🏃‍♀️ Running the Development Server](#🏃‍♀️-running-the-development-server)
+- [🤝 How to Contribute](#🤝-how-to-contribute)
 
-- [Recommended IDE Setup](#recommended-ide-setup)
-- [Setup](#setup)
-- [Development Server](#development-server)
-- [Contributing](#table-of-contents)
+## 💻 Recommended IDE Setup
 
-## Recommended IDE Setup
+For the best development experience, we recommend:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [VSCode](https://code.visualstudio.com/) - A robust, open-source code editor.
+- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) - A powerful Vue tooling that supports TypeScript (Disable Vetur).
+- [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) - Enhances Volar's TypeScript support.
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+For more information, refer to the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction).
 
-## Setup
+## 🚀 Setup
 
-Make sure to install the dependencies:
+To get started with PalatePanda, follow these steps:
 
-```bash
-npm install
-```
+1. Clone the repository: `git clone https://github.com/yourusername/PalatePanda.git`
+2. Navigate to the project directory: `cd PalatePanda`
+3. Install the dependencies: `npm install`
 
-## Development Server
+## 🏃‍♀️ Running the Development Server
 
-Start the development server on `http://localhost:3000`:
+To start the development server, run `npm run dev`. This will start the server on `http://localhost:3000`.
 
-```bash
-npm run dev
-```
+To host the development server on the network, run `npm run dev -- --host`.
 
-Host development server locally:
+## 🤝 How to Contribute
 
-```bash
-npm run dev -- --host
-```
-
-## Contributing
-
-Run checks, format files and commit with commitizen:
+Run checks, format files and commit with Commitizen:
 
 ```bash
 npm run commit
 ```
 
-Run checks, format files and push to github:
+Run checks, format files, and push to Github:
 
 ```bash
 npm run push

@@ -1,3 +1,4 @@
+import settings from './appsettings.json';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -12,9 +13,10 @@ export default defineNuxtConfig({
   pwa: {
     includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
     manifest: {
-      name: 'Lakics Péter',
-      short_name: 'Lakics Péter',
-      description: 'Lakics Péter személyes weboldala.',
+      name: `${settings.APP_NAME}`,
+      short_name: `${settings.APP_NAME}`,
+      description:
+        'Fedezd fel az egyszerű és ízletes otthoni receptek világát a PalatePanda oldalán. Csatlakozz hozzánk, oszd meg kreatív pillanataidat, és merülj el az otthoni főzés örömeiben. A PalatePanda segít, hogy az ételkészítés egy különleges és ízletes élménnyé váljon otthonodban.',
       screenshots: [
         {
           src: 'wide_recipe.png',

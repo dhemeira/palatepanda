@@ -2,9 +2,10 @@
   <NuxtLayout>
     <ViewWrapper
       :class="['flex', 'items-center', 'flex-col', 'md:flex-row', 'justify-center', 'gap-8']">
-      <SvgsErrorSvg
-        style="width: clamp(18.125rem, 14.671rem + 18.421vw, 31.25rem)"
-        aria-label="404" />
+      <img
+        class="rounded-bl-[80px] rounded-tr-[80px] rounded-tl-[40px] rounded-br-[40px] aspect-square"
+        style="max-height: calc(100vh - 56px - 32px); max-width: 600px"
+        src="/404_img.png" />
       <div
         style="max-width: 100%; width: 24rem"
         class="text-center md:text-left">
@@ -54,7 +55,7 @@ onMounted(() => {
   document.documentElement.style.colorScheme = theme.value;
 });
 
-const description = `Ez az oldal nem található. Lakics Péter weboldala.`;
+const description = `Az oldal, amit keresel, sajnos nem található. Azonban ne csüggedj! Fedezd fel további ízletes receptjeinket és konyhai inspirációinkat a PalatePanda oldalán. Csatlakozz hozzánk, és merülj el az otthoni főzés izgalmas világában.`;
 useHead({
   titleTemplate: (title) => `${title} | ${settings.APP_NAME}`,
   htmlAttrs: { lang: 'hu' },

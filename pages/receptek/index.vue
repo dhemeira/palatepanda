@@ -157,7 +157,8 @@ function avatarURL(authorName: string) {
 }
 
 const title = 'Receptek';
-const description = 'Receptek megtekintése. Lakics Péter weboldala.';
+const description =
+  'Fedezd fel a PalatePanda receptek gyűjteményét, és kóstold meg az otthoni konyha változatos ízeit. Ismerj meg új és izgalmas recepteket a közösség által megosztott kulináris kalandokból. Inspirálódj, főzz egyedi ételeket, és hagyd, hogy a PalatePanda vezessen el a gasztronómiai örömök világában.';
 
 useSeoMeta({
   title: () => `${title}`,

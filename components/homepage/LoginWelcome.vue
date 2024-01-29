@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[device.isMobileOrTablet ? 'mx-auto' : '']"
-    style="max-width: 600px; height: 450px">
+    style="max-width: 600px; height: 400px">
     <span class="flex items-center justify-center mb-6">
       <img
         class="rounded-lg mr-2"
@@ -9,7 +9,7 @@
         alt="Logo"
         width="48"
         height="48" />
-      <h1 class="text-3xl font-bold">Belépve, mint:</h1>
+      <h1 class="text-3xl font-bold">{{ settings.APP_NAME }}</h1>
     </span>
     <div class="bg-primary/5 text-on-surface mb-3 p-4 rounded drop-shadow-sm overflow-x-hidden">
       <Transition>
@@ -18,7 +18,6 @@
           class="h-1 rounded-full bottom-0 absolute"
           style="animation: progressBar 1.5s ease-in-out infinite"></div>
       </Transition>
-
       <span
         style="gap: 0.5rem"
         class="flex items-center mb-2">
@@ -80,6 +79,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import settings from '@/appsettings.json';
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiEmail, mdiNotebook, mdiAccount } from '@mdi/js';
 
