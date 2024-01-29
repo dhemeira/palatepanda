@@ -123,24 +123,21 @@ async function saveRecipe() {
   const _lines = cleaned.value.split('\n');
 
   if (_lines.length <= 1) return openAlert(errorHandler({ code: 'empty-recipe' }));
-  if (text.value == originalMd.value) {
-    console.info('Recipe not modified');
-    return router.push(`/receptek/${route.params?.author}/${route.params?.id}`);
-  }
-
   let _title;
 
-  if (isCoverImageLine(_lines[0]) && _lines[1] == '' && isTitleLine(_lines[2])) {
+  if (text.value == originalMd.value) {
+    console.info('Recipe not modified');
+  } else if (isCoverImageLine(_lines[0]) && _lines[1] == '' && isTitleLine(_lines[2])) {
     _title = _lines[2].slice(2);
     await saveToDb(_title, markdown.value, coverImage.value);
-    router.push(`/receptek/${route.params?.author}/${route.params?.id}`);
   } else if (!isCoverImageLine(_lines[0]) && isTitleLine(_lines[0])) {
     _title = _lines[0].slice(2);
     await saveToDb(_title, markdown.value);
-    router.push(`/receptek/${route.params?.author}/${route.params?.id}`);
   } else {
     return openAlert(errorHandler({ code: 'no-recipe-title' }));
   }
+
+  router.push(`/receptek/${route.params?.author}/${route.params?.id}`);
 }
 
 /**
@@ -232,7 +229,9 @@ definePageMeta({
 });
 
 const title = ref('Szerkesztés');
-const description = ref('Recept szerkesztése. Lakics Péter weboldala.');
+const description = ref(
+  'Finomítsd és szabd testre a recepted részleteit a PalatePanda szerkesztő felületén. Adj hozzá egyéni ízeket, finomhangold az utasításokat, és hozd létre saját kulináris mesterművedet. Fedezd fel a szerkesztés örömét, és teremts egyedi ízélményeket a PalatePanda segítségével.'
+);
 const image = ref(`${settings.APP_URL}/logo.png`);
 useSeoMeta({
   title: () => `${title.value}`,

@@ -19,41 +19,29 @@ export function debounce(func: TimerHandler, time: number): EventListenerOrEvent
  * @returns The error message
  */
 export function errorHandler(error: { [index: string]: string }): string {
-  if (!error) return '';
-  if (!error.code) return '';
-  switch (error.code) {
-    case 'auth/wrong-password':
-    case 'auth/user-not-found':
-    case 'auth/invalid-credential':
-      return `Hibás email cím vagy jelszó.`;
-    case 'auth-empty':
-      return 'Email cím vagy jelszó nincs kitöltve.';
-    case 'email-empty':
-      return 'Email cím nincs kitöltve.';
-    case 'auth/invalid-email':
-      return `Hibás email cím.`;
-    case 'permission-denied':
-    case 'unauthenticated':
-      return `Nincs jogosultságod megtekinteni az oldal tartalmát.`;
-    case 'auth/internal-error':
-      return `Sikertelen bejelentkezés.`;
-    case 'no-recipe-title':
-      return 'Adj címet a receptnek! Cím megadása: Az első sorban a következőképp: # Példa Cím';
-    case 'empty-recipe':
-      return 'Hiba: A recept nem lehet üres.';
-    case 'displayname-empty':
-      return 'Adj meg egy felhasználónevet!';
-    case 'displayname-short':
-      return 'A felhasználónév túl rövid.';
-    case 'password-empty':
-      return 'Adj meg egy jelszót.';
-    case 'auth/weak-password':
-      return 'A jelszó nem elég erős.';
-    case 'displayname-long':
-      return 'A felhasználónév túl hosszú.';
-    default:
-      return 'Ismeretlen hiba.';
-  }
+  if (!error?.code) return '';
+
+  const errorMessages: { [index: string]: string } = {
+    'auth/wrong-password': 'Hibás email cím vagy jelszó.',
+    'auth/user-not-found': 'Hibás email cím vagy jelszó.',
+    'auth/invalid-credential': 'Hibás email cím vagy jelszó.',
+    'auth-empty': 'Email cím vagy jelszó nincs kitöltve.',
+    'email-empty': 'Email cím nincs kitöltve.',
+    'auth/invalid-email': 'Hibás email cím.',
+    'permission-denied': 'Nincs jogosultságod megtekinteni az oldal tartalmát.',
+    'unauthenticated': 'Nincs jogosultságod megtekinteni az oldal tartalmát.',
+    'auth/internal-error': 'Sikertelen bejelentkezés.',
+    'no-recipe-title':
+      'Adj címet a receptnek! Cím megadása: Az első sorban a következőképp: # Példa Cím',
+    'empty-recipe': 'Hiba: A recept nem lehet üres.',
+    'displayname-empty': 'Adj meg egy felhasználónevet!',
+    'displayname-short': 'A felhasználónév túl rövid.',
+    'password-empty': 'Adj meg egy jelszót.',
+    'auth/weak-password': 'A jelszó nem elég erős.',
+    'displayname-long': 'A felhasználónév túl hosszú.',
+  };
+
+  return errorMessages[error.code] || 'Ismeretlen hiba.';
 }
 
 /**
@@ -62,16 +50,13 @@ export function errorHandler(error: { [index: string]: string }): string {
  * @returns The success message
  */
 export function successHandler(success: { [index: string]: string }): string {
-  if (!success) return '';
-  if (!success.code) return '';
-  switch (success.code) {
-    case 'name-changed':
-      return 'A felhasználónév sikeresen megváltoztatva.';
-    case 'password-changed':
-      return 'A jelszó sikeresen megváltoztatva.';
-    case 'password-reset-sent':
-      return 'A jelszó visszaállító email sikeresen elküldve.';
-    default:
-      return 'Ismeretlen siker.';
-  }
+  if (!success?.code) return '';
+
+  const successMessages: { [index: string]: string } = {
+    'name-changed': 'A felhasználónév sikeresen megváltoztatva.',
+    'password-changed': 'A jelszó sikeresen megváltoztatva.',
+    'password-reset-sent': 'A jelszó visszaállító email sikeresen elküldve.',
+  };
+
+  return successMessages[success.code] || 'Ismeretlen hiba.';
 }

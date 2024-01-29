@@ -166,7 +166,8 @@ async function saveToDb(_title: string, _markdown: string, _image?: string) {
 }
 
 const title = 'Recept Írás';
-const description = 'Recept írása. Lakics Péter weboldala.';
+const description =
+  'Üdvözöllek a PalatePanda recept írás oldalán! Fedezd fel a kreativitásodat, ossz meg saját receptjeidet és kulináris ötleteidet a PalatePanda közösségével. Teremts egyedi ízeket, és inspirálj másokat az otthoni főzés művészetében. Legyen ez a hely, ahol a gasztronómia szerelmesei találkoznak és megosztják szenvedélyüket!';
 
 definePageMeta({
   middleware: ['auth'],

@@ -157,7 +157,9 @@ const avatarURL = computed(() => {
 });
 
 const title = useState('recipeTitle', () => 'Recept');
-const description = ref('Recept megtekintése. Lakics Péter weboldala.');
+const description = ref(
+  'Kóstold meg az otthoni konyha varázsát a PalatePanda egyedi receptjével. Fedezd fel az ízek harmoniáját, és merülj el a kulináris kreativitás világában. Oszd meg tapasztalataidat, inspirálj másokat, és hagyd, hogy a PalatePanda segítsen a gasztronómiai élményeid továbbfejlesztésében.'
+);
 const image = ref(`${settings.APP_URL}/logo.png`);
 useSeoMeta({
   title: () => `${title.value}`,

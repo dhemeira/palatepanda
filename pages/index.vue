@@ -3,8 +3,10 @@
     <ViewWrapper
       :class="['flex', 'items-center', 'flex-col', 'md:flex-row', 'justify-center', 'gap-8']">
       <div :class="['w-1/2', 'hidden', 'md:flex', 'justify-end', 'items-center']">
-        <SvgsHomeSvg
-          style="height: 600px; max-height: calc(100vh - 56px - 32px); min-height: 450px" />
+        <img
+          class="rounded-bl-[80px] rounded-tr-[80px] rounded-tl-[40px] rounded-br-[40px] aspect-square"
+          style="max-height: calc(100vh - 56px - 32px); max-width: 600px"
+          src="/home_img.png" />
       </div>
       <div :class="[device.isMobileOrTablet ? 'w-full' : 'w-1/2']">
         <LazyHomepageLoginForm v-if="!user" />
@@ -34,10 +36,28 @@
     <div
       :class="[
         device.isMobileOrTablet ? 'px-2' : 'px-6',
-        'w-full py-8 md:py-16',
-        isPwa ? 'bg-primary/5' : 'bg-background',
+        'w-full',
+        isPwa ? 'bg-primary/5 py-8 md:py-16' : 'bg-background pt-8 md:pt-16 pb-4 md:pb-8',
       ]">
-      <h2 class="text-2xl mb-4">Az oldalról</h2>
+      <h2 class="text-2xl mb-4">A {{ settings.APP_NAME }}-ról</h2>
+      <p class="mt-2">
+        Merülj el a kulináris élvezetek világában a PalatePanda oldalán, ahol egyszerű, otthoni
+        receptek várnak rád. Fedezd fel az ízletes ételek sokféleségét, melyek könnyedén
+        elkészíthetők mind a tapasztalt szakácsok, mind a konyhai kezdők számára.
+      </p>
+      <p class="mb-4 mt-1">
+        A PalatePanda vidám hangulatában fedezd fel a főzés örömét, ahol az ízek sokszínűsége és az
+        egyszerűség találkozik. Csatlakozz hozzánk, oszd meg inspiráló pillanataidat, és hagyd, hogy
+        a PalatePanda segítse utadat az otthonodban élvezetes élmények és kreatív ötletek felé.
+      </p>
+    </div>
+    <div
+      :class="[
+        device.isMobileOrTablet ? 'px-2' : 'px-6',
+        'w-full py-8 md:py-16',
+        'bg-background',
+        isPwa ? 'py-8 md:py-16' : 'pb-8 md:pb-16 pt-4 md:pt-8',
+      ]">
       <div class="flex gap-4 flex-col md:flex-row">
         <div class="w-full">
           <p class="my-2">
@@ -72,7 +92,8 @@ const user = useCurrentUser();
 const device = useDevice();
 
 const title = 'Kezdőlap';
-const description = 'Lakics Péter weboldala.';
+const description =
+  'Fedezd fel az egyszerű és ízletes otthoni receptek világát a PalatePanda oldalán. Csatlakozz hozzánk, oszd meg kreatív pillanataidat, és merülj el az otthoni főzés örömeiben. A PalatePanda segít, hogy az ételkészítés egy különleges és ízletes élménnyé váljon otthonodban.';
 
 const deferredPrompt = useState('pwaPrompt', () => null as any);
 const isPwa = useState('isPwa', () => false);
