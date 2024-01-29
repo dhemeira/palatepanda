@@ -7,10 +7,10 @@ Welcome to PalatePanda, a Nuxt.js project designed to tantalize your taste buds!
 
 ## 📚 Table of Contents
 
-- [💻 Recommended IDE Setup](#💻-recommended-ide-setup)
-- [🚀 Setup](#🚀-setup)
-- [🏃‍♀️ Running the Development Server](#🏃‍♀️-running-the-development-server)
-- [🤝 How to Contribute](#🤝-how-to-contribute)
+- [💻 Recommended IDE Setup](#-recommended-ide-setup)
+- [🚀 Setup](#-setup)
+- [🏃‍♀️ Running the Development Server](#-running-the-development-server)
+- [🤝 How to Contribute](#-how-to-contribute)
 
 ## 💻 Recommended IDE Setup
 
