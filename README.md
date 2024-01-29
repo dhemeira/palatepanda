@@ -3,14 +3,14 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![CodeScene Code Health](https://codescene.io/projects/49178/status-badges/code-health)](https://codescene.io/projects/49178)
 
-Welcome to PalatePanda, a Nuxt.js project designed to tantalize your taste buds! Our frontend is deployed on [Vercel](https://vercel.app/) and we utilize [Firebase](https://firebase.google.com/) for our backend services.
+Welcome to PalatePanda, a recipe sharing platform built with [Nuxt.js](https://nuxt.com/), [Firebase](https://firebase.google.com/) and deployed on deployed on [Vercel](https://vercel.app/). It allows users to create, share, and discover delicious recipes from around the world. The project is designed with a focus on user experience, with a clean and intuitive interface that makes browsing and sharing recipes a breeze.
 
 ## 📚 Table of Contents
 
-- [💻 Recommended IDE Setup](#💻-recommended-ide-setup)
-- [🚀 Setup](#🚀-setup)
-- [🏃‍♀️ Running the Development Server](#🏃‍♀️-running-the-development-server)
-- [🤝 How to Contribute](#🤝-how-to-contribute)
+- [💻 Recommended IDE Setup](#-recommended-ide-setup)
+- [🚀 Setup](#-setup)
+- [🏃‍♀️ Running the Development Server](#-running-the-development-server)
+- [🤝 How to Contribute](#-how-to-contribute)
 
 ## 💻 Recommended IDE Setup
 
