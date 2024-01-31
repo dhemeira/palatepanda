@@ -5,7 +5,7 @@
     <NavigationSkipToMain />
     <NavigationSideBar
       :class="!device.isMobileOrTablet || showSidebar ? 'opacity-100' : 'opacity-0'" />
-    <main
+    <div
       tabindex="-1"
       id="main"
       :class="[
@@ -13,9 +13,11 @@
         'bg-background',
         device.isMobileOrTablet ? '' : 'ml-14',
       ]">
-      <slot />
+      <main>
+        <slot />
+      </main>
       <LazyNavigationFooterDefault />
-    </main>
+    </div>
     <component
       :is="device.isMobileOrTablet ? NavigationBottomAppBar : NavigationFabLayout"
       :right="device.isMobileOrTablet ? false : true"

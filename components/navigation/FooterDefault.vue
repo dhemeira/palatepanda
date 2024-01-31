@@ -23,17 +23,9 @@
     <div
       class="flex flex-col sm:flex-row justify-center"
       style="gap: 0.35rem">
-      <span>© {{ new Date().getFullYear() }}</span>
-      <span class="hidden sm:inline">-</span>
-      <strong>Lakics Péter</strong>
+      <span>© 2023 - {{ new Date().getFullYear() }}</span>
       <span class="hidden sm:inline">|</span>
-      <a
-        class="hover:text-black dark:hover:text-white"
-        variant="text"
-        href="https://storyset.com/web"
-        target="_blank">
-        Illusztrációk: Storyset
-      </a>
+      <strong>Lakics Péter</strong>
     </div>
   </footer>
 </template>

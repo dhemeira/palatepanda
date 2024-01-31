@@ -1,5 +1,5 @@
 <template>
-  <ViewWrapper>
+  <ViewWrapper class="mb-8">
     <AlertToast
       :class="['fixed', 'z-40', 'right-4', 'top-4', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"
       v-model="showAlert"
@@ -70,7 +70,7 @@ const db = useFirestore();
 const _database = getFirestore(db.app);
 
 /**
- * Handles the save action for the recipe and notifies the user of it. If the save is successful, clear the text field, if not, show an error
+ * Handles the save action and notifies the user of it. If the save is successful, clear the text field, if not, show an error
  */
 async function saveRecipe() {
   const _lines = cleaned.value.split('\n');
@@ -78,8 +78,10 @@ async function saveRecipe() {
   if (_lines.length <= 1) return openAlert(errorHandler({ code: 'empty-recipe' }));
 
   let _title;
-
-  if (isCoverImageLine(_lines[0]) && _lines[1] == '' && isTitleLine(_lines[2])) {
+  let isValidRecipeWithImage =
+    isCoverImageLine(_lines[0]) && _lines[1] == '' && isTitleLine(_lines[2]);
+  let isValidRecipeWithoutImage = !isCoverImageLine(_lines[0]) && isTitleLine(_lines[0]);
+  if (isValidRecipeWithImage) {
     _title = _lines[2].slice(2);
     let _id = await saveToDb(_title, markdown.value, coverImage.value);
     text.value = '';
@@ -88,7 +90,7 @@ async function saveRecipe() {
       `Recept sikeresen mentve: <code class="bg-primary text-sm rounded px-1">${_id}</code>`,
       'success'
     );
-  } else if (!isCoverImageLine(_lines[0]) && isTitleLine(_lines[0])) {
+  } else if (isValidRecipeWithoutImage) {
     _title = _lines[0].slice(2);
     let _id = await saveToDb(_title, markdown.value);
     text.value = '';
@@ -166,8 +168,10 @@ async function saveToDb(_title: string, _markdown: string, _image?: string) {
 }
 
 const title = 'Recept Írás';
-const description =
-  'Üdvözöllek a PalatePanda recept írás oldalán! Fedezd fel a kreativitásodat, ossz meg saját receptjeidet és kulináris ötleteidet a PalatePanda közösségével. Teremts egyedi ízeket, és inspirálj másokat az otthoni főzés művészetében. Legyen ez a hely, ahol a gasztronómia szerelmesei találkoznak és megosztják szenvedélyüket!';
+const description = `Üdvözöllek a PalatePanda recept írás oldalán! 
+  Fedezd fel a kreativitásodat, ossz meg saját receptjeidet és kulináris ötleteidet a PalatePanda közösségével. 
+  Teremts egyedi ízeket, és inspirálj másokat az otthoni főzés művészetében. 
+  Legyen ez a hely, ahol a gasztronómia szerelmesei találkoznak és megosztják szenvedélyüket!`;
 
 definePageMeta({
   middleware: ['auth'],

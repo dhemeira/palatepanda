@@ -1,5 +1,5 @@
 <template>
-  <ViewWrapper>
+  <ViewWrapper class="mb-8">
     <ClientOnly>
       <div :class="['fixed', 'bg-background', 'right-2', 'rounded-full']">
         <div :class="['bg-primary/10', 'rounded-full', 'p-1', 'flex', 'gap-1']">
@@ -158,7 +158,9 @@ const avatarURL = computed(() => {
 
 const title = useState('recipeTitle', () => 'Recept');
 const description = ref(
-  'Kóstold meg az otthoni konyha varázsát a PalatePanda egyedi receptjével. Fedezd fel az ízek harmoniáját, és merülj el a kulináris kreativitás világában. Oszd meg tapasztalataidat, inspirálj másokat, és hagyd, hogy a PalatePanda segítsen a gasztronómiai élményeid továbbfejlesztésében.'
+  `Kóstold meg az otthoni konyha varázsát a PalatePanda egyedi receptjével.
+  Fedezd fel az ízek harmoniáját, és merülj el a kulináris kreativitás világában.
+  Oszd meg tapasztalataidat, inspirálj másokat, és hagyd, hogy a PalatePanda segítsen a gasztronómiai élményeid továbbfejlesztésében.`
 );
 const image = ref(`${settings.APP_URL}/logo.png`);
 useSeoMeta({
