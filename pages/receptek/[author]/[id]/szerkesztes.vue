@@ -1,5 +1,5 @@
 <template>
-  <ViewWrapper>
+  <ViewWrapper class="mb-8">
     <AlertToast
       :class="['fixed', 'z-40', 'right-4', 'top-4', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"
       v-model="showAlert"
@@ -124,13 +124,15 @@ async function saveRecipe() {
 
   if (_lines.length <= 1) return openAlert(errorHandler({ code: 'empty-recipe' }));
   let _title;
-
+  let isValidRecipeWithImage =
+    isCoverImageLine(_lines[0]) && _lines[1] == '' && isTitleLine(_lines[2]);
+  let isValidRecipeWithoutImage = !isCoverImageLine(_lines[0]) && isTitleLine(_lines[0]);
   if (text.value == originalMd.value) {
     console.info('Recipe not modified');
-  } else if (isCoverImageLine(_lines[0]) && _lines[1] == '' && isTitleLine(_lines[2])) {
+  } else if (isValidRecipeWithImage) {
     _title = _lines[2].slice(2);
     await saveToDb(_title, markdown.value, coverImage.value);
-  } else if (!isCoverImageLine(_lines[0]) && isTitleLine(_lines[0])) {
+  } else if (isValidRecipeWithoutImage) {
     _title = _lines[0].slice(2);
     await saveToDb(_title, markdown.value);
   } else {

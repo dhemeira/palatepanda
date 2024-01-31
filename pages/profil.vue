@@ -1,5 +1,5 @@
 <template>
-  <ViewWrapper :class="device.isMobileOrTablet ? 'w-full' : 'w-3/4 mx-auto'">
+  <ViewWrapper :class="['mb-8', device.isMobileOrTablet ? 'w-full' : 'w-3/4 mx-auto']">
     <AlertToast
       :class="['fixed', 'z-40', 'right-4', 'top-4', device.isMobileOrTablet ? 'ml-4' : 'ml-20']"
       v-model="showAlert"
