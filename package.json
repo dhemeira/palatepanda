@@ -29,7 +29,7 @@
     "commitizen": "^4.3.0",
     "eslint-plugin-vue": "^9.20.1",
     "npm-run-all": "^4.1.5",
-    "nuxt": "^3.9.3",
+    "nuxt": "^3.10.0",
     "prettier": "^3.2.4",
     "tailwind-material-colors": "^1.2.0"
   },
@@ -42,6 +42,7 @@
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^7.4.47",
     "firebase": "^10.7.2",
+    "firebase-admin": "^11.11.1",
     "marked": "^11.2.0",
     "nuxt-vuefire": "^1.0.1",
     "vuefire": "^3.1.22"
