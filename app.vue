@@ -7,7 +7,7 @@
       v-model="showAlert"
       :msg="alertMessage"
       :type="alertType" />
-    <NuxtPage :class="device.isMobileOrTablet ? 'min-h-[calc(100vh-56px)]' : 'min-h-screen'" />
+    <NuxtPage :class="device.isMobileOrTablet ? 'min-h-[calc(100svh-56px)]' : 'min-h-screen'" />
   </NuxtLayout>
 </template>
 <script setup lang="ts">
