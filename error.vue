@@ -11,7 +11,7 @@
       </div>
       <div :class="['w-full', 'text-center', 'md:w-1/2', 'md:text-left']">
         <div
-          :class="['flex flex-col justify-center', 'mx-auto', 'md:h-[400px]']"
+          :class="['flex flex-col justify-center', 'mx-auto', 'md:mx-0', 'md:h-[400px]']"
           style="max-width: 600px">
           <h1
             :class="['my-2', 'text-3xl', 'font-bold']"
