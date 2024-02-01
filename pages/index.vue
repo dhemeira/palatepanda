@@ -5,7 +5,7 @@
       <div :class="['w-1/2', 'hidden', 'md:flex', 'justify-end', 'items-center']">
         <img
           class="rounded-bl-[80px] rounded-tr-[80px] rounded-tl-[40px] rounded-br-[40px] aspect-square"
-          style="max-height: calc(100vh - 56px - 32px); max-width: 600px"
+          style="max-height: max(calc(100vh - 56px - 32px), 400px); max-width: 600px"
           src="/home_img.png" />
       </div>
       <div :class="[device.isMobileOrTablet ? 'w-full' : 'w-1/2']">
