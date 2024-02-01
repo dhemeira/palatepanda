@@ -1,32 +1,37 @@
 <template>
-  <NuxtLayout>
+  <NuxtLayout name="error">
     <ViewWrapper
       :class="['flex', 'items-center', 'flex-col', 'md:flex-row', 'justify-center', 'gap-8']">
-      <img
-        class="rounded-bl-[80px] rounded-tr-[80px] rounded-tl-[40px] rounded-br-[40px] aspect-square"
-        style="max-height: calc(100vh - 56px - 32px); max-width: 600px"
-        src="/404_img.png" />
       <div
-        style="max-width: 100%; width: 24rem"
-        class="text-center md:text-left">
-        <h1
-          :class="['my-2', 'text-3xl', 'font-bold']"
-          style="word-break: break-word">
-          {{
-            (error?.statusMessage as string).replace('Page not found', 'Az oldal nem található') ??
-            'Ez az oldal nem található'
-          }}
-        </h1>
-        <p
-          :class="['mt-2', 'mb-4']"
-          style="max-width: 100%; width: 24rem">
-          Elnézésedet kérjük! Látogasd meg a kezdőlapot, hogy megtaláld amit keresel.
-        </p>
-        <DefaultButton
-          @click="handleError"
-          class="w-full">
-          Vissza a Kezdőlapra
-        </DefaultButton>
+        :class="['md:w-1/2', 'md:justify-end', 'w-full', 'justify-center', 'flex', 'items-center']">
+        <img
+          class="rounded-bl-[80px] rounded-tr-[80px] rounded-tl-[40px] rounded-br-[40px] aspect-square max-h-[calc(100vh-400px-32px)] md:max-h-[calc(100vh-56px-32px)]"
+          style="max-width: min(600px, 100vw - 16px)"
+          src="/404_img.png" />
+      </div>
+      <div :class="['w-full', 'text-center', 'md:w-1/2', 'md:text-left']">
+        <div
+          :class="['flex flex-col justify-center', 'mx-auto', 'md:h-[400px]']"
+          style="max-width: 600px">
+          <h1
+            :class="['my-2', 'text-3xl', 'font-bold']"
+            style="word-break: break-word">
+            Az oldal nem található
+          </h1>
+          <p :class="['mt-2', 'mb-4']">
+            Válogass receptjeink között vagy látogasd meg a kezdőlapot, hogy megtaláld amit keresel.
+          </p>
+          <DefaultButton
+            href="/receptek"
+            class="mb-4">
+            Receptek Megtekintése
+          </DefaultButton>
+          <DefaultButton
+            :outlined="true"
+            href="/">
+            Vissza a Kezdőlapra
+          </DefaultButton>
+        </div>
       </div>
     </ViewWrapper>
   </NuxtLayout>
@@ -34,30 +39,9 @@
 
 <script setup lang="ts">
 import settings from '@/appsettings.json';
-import { cookieValue } from '@/helpers/index';
-
-defineProps({
-  error: Object,
-});
-
-const handleError = () => clearError({ redirect: '/' });
-
-/** Theme of the site, either 'dark' or 'light' */
-const theme = useState('theme', () => 'dark');
-
-onMounted(() => {
-  const _themeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  const _theme = cookieValue('theme');
-
-  if (_theme) theme.value = _theme;
-  else theme.value = _themeQuery.matches ? 'dark' : 'light';
-
-  document.documentElement.style.colorScheme = theme.value;
-});
 
 const description = `Az oldal, amit keresel, sajnos nem található. Azonban ne csüggedj! Fedezd fel további ízletes receptjeinket és konyhai inspirációinkat a PalatePanda oldalán. Csatlakozz hozzánk, és merülj el az otthoni főzés izgalmas világában.`;
 useHead({
-  titleTemplate: (title) => `${title} | ${settings.APP_NAME}`,
   htmlAttrs: { lang: 'hu' },
   link: [
     { rel: 'icon', href: `${settings.APP_URL}/favicon.ico` },
@@ -67,7 +51,7 @@ useHead({
 });
 const route = useRoute();
 useSeoMeta({
-  title: `404`,
+  title: `404 | ${settings.APP_NAME}`,
   ogTitle: `404 | ${settings.APP_NAME}`,
   description: description,
   ogDescription: description,
@@ -84,3 +68,8 @@ useServerSeoMeta({
   ogUrl: `${settings.APP_URL}${route.path}`,
 });
 </script>
+<style>
+html {
+  color-scheme: dark;
+}
+</style>

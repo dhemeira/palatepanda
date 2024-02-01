@@ -128,7 +128,7 @@ async function readFromDb(author: string, id: string) {
   } else {
     showError({
       statusCode: 404,
-      statusMessage: 'Recept nem található',
+      message: 'Recept nem található',
     });
   }
 }
