@@ -1,12 +1,21 @@
 <template>
   <NuxtLayout name="error">
-    <ViewWrapper
-      :class="['flex', 'items-center', 'flex-col', 'md:flex-row', 'justify-center', 'gap-8']">
+    <div
+      :class="[
+        'flex',
+        'items-center',
+        'flex-col',
+        'md:flex-row',
+        'justify-center',
+        'gap-8',
+        'px-2 min-h-[calc(100vh-56px)]',
+        'md:px-6 md:min-h-screen',
+        'w-full py-4',
+      ]">
       <div
         :class="['md:w-1/2', 'md:justify-end', 'w-full', 'justify-center', 'flex', 'items-center']">
         <img
-          class="rounded-bl-[80px] rounded-tr-[80px] rounded-tl-[40px] rounded-br-[40px] aspect-square max-h-[calc(100vh-400px-32px)] md:max-h-[calc(100vh-56px-32px)]"
-          style="max-width: min(600px, 100vw - 16px)"
+          class="rounded-bl-[80px] rounded-tr-[80px] rounded-tl-[40px] rounded-br-[40px] aspect-square max-h-[max(250px,calc(100vh-400px-16px))] md:max-h-[max(400px,calc(100vh-56px-32px))] max-w-[min(600px,100vw-16px)] md:max-w-[min(600px,50vw-32px)]"
           src="/404_img.png" />
       </div>
       <div :class="['w-full', 'text-center', 'md:w-1/2', 'md:text-left']">
@@ -33,7 +42,7 @@
           </DefaultButton>
         </div>
       </div>
-    </ViewWrapper>
+    </div>
   </NuxtLayout>
 </template>
 
