@@ -41,7 +41,7 @@
   "dependencies": {
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^7.4.47",
-    "firebase": "^10.7.2",
+    "firebase": "^10.11.0",
     "firebase-admin": "^11.11.1",
     "marked": "^11.2.0",
     "nuxt-vuefire": "^1.0.1",
