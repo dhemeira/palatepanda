@@ -2,7 +2,7 @@
   <footer class="bg-primary-container text-center flex flex-col py-2 px-4 items-center flex-auto">
     <div class="flex">
       <a
-        class="h-12 w-12 flex items-center justify-center mx-4 hover:text-black dark:hover:text-white"
+        class="h-12 w-12 flex items-center justify-center mx-4 hover:text-inverse-surface-dark"
         href="https://github.com/dhemeira"
         target="_blank">
         <svg-icon
@@ -11,7 +11,7 @@
       </a>
 
       <a
-        class="h-12 w-12 flex items-center justify-center mx-4 hover:text-black dark:hover:text-white"
+        class="h-12 w-12 flex items-center justify-center mx-4 hover:text-inverse-surface-dark"
         href="https://www.linkedin.com/in/peterlakics/"
         target="_blank">
         <svg-icon
