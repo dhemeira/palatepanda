@@ -29,5 +29,9 @@ module.exports = withMaterialColors(
     // secondary and/or tertiary are optional, if not set they will be derived from the primary color
     primary: '#5c6bc0',
     secondary: '#f9aa33',
+  },
+  {
+    /* one of 'content', 'expressive', 'fidelity', 'monochrome', 'neutral', 'tonalSpot' or 'vibrant' */
+    scheme: 'content',
   }
 );
