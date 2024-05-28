@@ -44,7 +44,7 @@
     "firebase": "^10.7.2",
     "firebase-admin": "^11.11.1",
     "marked": "^11.2.0",
-    "nuxt-vuefire": "^1.0.1",
+    "nuxt-vuefire": "^1.0.2",
     "vuefire": "^3.1.23"
   }
 }
