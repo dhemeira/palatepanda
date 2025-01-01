@@ -109,7 +109,7 @@ async function saveRecipe() {
  */
 function updatePreview() {
   cleaned.value = text.value.replace(/\\n\\n/g, '\n');
-  const _regex = new RegExp(/cImage\|.*\/.+\.(jpg|png)/);
+  const _regex = new RegExp(/cImage\|.*\/.+\.(jpg|png|jpeg|webp)/);
 
   const _textArray = cleaned.value.split('\n');
 
