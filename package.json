@@ -42,6 +42,7 @@
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^7.4.47",
     "firebase": "^10.12.2",
+    "firebase-admin": "^13.0.2",
     "marked": "^15.0.4",
     "nuxt-vuefire": "^1.0.2",
     "vuefire": "^3.1.23"

@@ -153,7 +153,7 @@ function avatarURL(authorName: string) {
     .normalize('NFD')
     .replace(/\p{Diacritic}/gu, '')
     .replace(' ', '');
-  return `https://source.boringavatars.com/marble/64/${_formattedName}`;
+  return `https://dhemeira.hu/api/avatar?username=${_formattedName}`;
 }
 
 const title = 'Receptek';
