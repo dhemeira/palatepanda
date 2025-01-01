@@ -9,7 +9,9 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     '@vueuse/nuxt',
   ],
+
   ssr: true,
+
   pwa: {
     includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
     manifest: {
@@ -104,6 +106,7 @@ export default defineNuxtConfig({
       categories: ['food'],
     },
   },
+
   vuefire: {
     auth: {
       enabled: true,
@@ -118,7 +121,10 @@ export default defineNuxtConfig({
       appId: '1:645413753292:web:21f7cf3f8043aefa900d69',
     },
   },
+
   eslint: {
     lintOnStart: false,
   },
+
+  compatibilityDate: '2025-01-01',
 });
