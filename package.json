@@ -42,7 +42,7 @@
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^7.4.47",
     "firebase": "^11.1.0",
-    "marked": "^15.0.4",
+    "marked": "^15.0.6",
     "nuxt-vuefire": "^1.0.5",
     "vuefire": "^3.2.1"
   }
